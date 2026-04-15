@@ -466,7 +466,7 @@ async function runHeroBoot() {
     
     const taglineEl = document.getElementById('hero-tagline');
     if (taglineEl) {
-      taglineEl.textContent = '"I build the hardware. I write the firmware. I ship the robot."';
+      taglineEl.textContent = 'I build the hardware. I write the firmware. I ship the robot.';
       taglineEl.classList.add('visible');
     }
     
@@ -517,7 +517,7 @@ async function runHeroBoot() {
     // Make it visible first (opacity will be at 0), then type into it
     taglineEl.classList.add('visible');
     taglineEl.textContent = '';
-    const taglineText = '"I build the hardware. I write the firmware. I ship the robot."';
+    const taglineText = 'I build the hardware. I write the firmware. I ship the robot.';
     // Small cursor while typing tagline
     const taglineCursor = document.createElement('span');
     taglineCursor.className = 'boot-cursor boot-cursor--inline';
