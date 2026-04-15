@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nishanth K | Portfolio</title>
+  <meta name="description" content="Portfolio of Nishanth K — Embedded Systems &amp; Robotics Engineer based in Bengaluru. I build the hardware. I write the firmware. I ship the robot." />
+  <meta name="keywords" content="embedded systems, robotics engineer, ESP32, Arduino, IoT, firmware, PCB design, Bengaluru" />
+  <meta property="og:title" content="Nishanth K — Robotics &amp; Embedded Engineer" />
+  <meta property="og:description" content="I build the hardware. I write the firmware. I ship the robot." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23060010'/><text y='24' x='4' font-size='22' fill='%237c3aed' font-family='monospace' font-weight='bold'>N</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="media.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ====== CUSTOM CURSOR ====== -->
+  <div id="cursor-outer"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- ====== SPACE BACKGROUND (global fixed) ====== -->
+  <canvas id="space-canvas"></canvas>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">NK</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" data-section="about">about</a></li>
+      <li><a href="#experience" data-section="experience">experience</a></li>
+      <li><a href="#projects" data-section="projects">projects</a></li>
+      <li><a href="#skills" data-section="skills">skills</a></li>
+      <li><a href="#contact" data-section="contact">contact</a></li>
+      <div id="nav-indicator"></div>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ====== MOBILE MENU ====== -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-link">// about</a>
+    <a href="#experience" class="mobile-link">// experience</a>
+    <a href="#projects" class="mobile-link">// projects</a>
+    <a href="#skills" class="mobile-link">// skills</a>
+    <a href="#contact" class="mobile-link">// contact</a>
+  </div>
+
+  <!-- ====== HERO ====== -->
+  <section id="hero">
+    <!-- Circuit board canvas — hero section only -->
+    <canvas id="circuit-canvas"></canvas>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <!-- Terminal boot lines -->
+        <div class="hero-terminal-boot" id="hero-boot">
+          <div class="boot-line" id="boot-init">&gt; INITIALIZING SYSTEMS...</div>
+          <div class="boot-line" id="boot-loc"></div>
+          <div class="boot-line" id="boot-status"></div>
+        </div>
+
+        <!-- Name with soldering canvas overlay -->
+        <div class="hero-name-wrap">
+          <h1 class="hero-name" id="hero-name">&nbsp;</h1>
+          <canvas id="solder-canvas"></canvas>
+        </div>
+
+        <p class="hero-tagline" id="hero-tagline"></p>
+        <div class="hero-ctas" id="hero-ctas">
+          <a href="#projects" class="btn btn-outline">▸ View Projects</a>
+          <a href="./resume.pdf" download="Nishanth_K_Resume.pdf" class="btn btn-solid">↓ Download Resume</a>
+        </div>
+        <div class="hero-location" id="hero-location">
+          <span>📍</span> Bengaluru, India &nbsp;|&nbsp; Available for opportunities
+        </div>
+      </div>
+
+      <div class="hero-visual" id="hero-visual">
+        <div class="hero-svg-wrapper">
+          <div class="osc-wrap">
+            <div class="osc-label">OSCILLOSCOPE — CH1 &nbsp;<span>FIRMWARE SERIAL OUT</span></div>
+            <div class="osc-screen">
+              <svg id="osc-svg" viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg" width="100%">
+                <defs>
+                  <pattern id="grid" width="48" height="44" patternUnits="userSpaceOnUse">
+                    <path d="M 48 0 L 0 0 0 44" fill="none" stroke="rgba(124,58,237,0.08)" stroke-width="0.5"/>
+                  </pattern>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <rect width="480" height="220" fill="url(#grid)"/>
+                <line x1="0" y1="110" x2="480" y2="110" stroke="rgba(124,58,237,0.15)" stroke-width="0.5" stroke-dasharray="4,4"/>
+                <line x1="240" y1="0" x2="240" y2="220" stroke="rgba(124,58,237,0.15)" stroke-width="0.5" stroke-dasharray="4,4"/>
+                <path id="osc-wave" d="" stroke="#a855f7" stroke-width="2" fill="none" filter="url(#glow)"/>
+                <path id="osc-wave2" d="" stroke="#06d6a0" stroke-width="1.5" fill="none" opacity="0.6"/>
+                <text x="8" y="14" fill="rgba(168,85,247,0.5)" font-family="JetBrains Mono,monospace" font-size="8">CH1 5V/div</text>
+                <text x="8" y="26" fill="rgba(6,214,160,0.5)" font-family="JetBrains Mono,monospace" font-size="8">CH2 3.3V/div</text>
+                <text x="380" y="214" fill="rgba(124,58,237,0.3)" font-family="JetBrains Mono,monospace" font-size="8">1ms/div</text>
+              </svg>
+            </div>
+            <div style="display:flex;gap:1.5rem;margin-top:0.75rem;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:0.62rem;color:var(--text-muted);">Freq: <span style="color:var(--glow);" id="freq-display">--</span> Hz</span>
+              <span style="font-family:var(--mono);font-size:0.62rem;color:var(--text-muted);">Vpp: <span style="color:var(--secondary);">3.28</span> V</span>
+              <span style="font-family:var(--mono);font-size:0.62rem;color:var(--text-muted);">Status: <span style="color:#27c93f;">RUNNING</span></span>
+            </div>
+          </div>
+
+          <div style="margin-top:1rem;border:1px solid var(--border);border-radius:var(--radius);padding:0.85rem 1rem;background:var(--surface);display:flex;align-items:center;gap:1rem;">
+            <svg class="robot-svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <rect x="14" y="18" width="20" height="16" rx="3" stroke="#7c3aed" stroke-width="1.5"/>
+              <rect x="18" y="10" width="12" height="8" rx="2" stroke="#7c3aed" stroke-width="1.5"/>
+              <line x1="24" y1="18" x2="24" y2="10" stroke="#7c3aed" stroke-width="1.5"/>
+              <circle cx="21" cy="23" r="2" fill="#a855f7" opacity="0.8"/>
+              <circle cx="27" cy="23" r="2" fill="#a855f7" opacity="0.8"/>
+              <rect x="20" y="27" width="8" height="2" rx="1" fill="#a855f7" opacity="0.5"/>
+              <line x1="8" y1="22" x2="14" y2="22" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="8" y1="28" x2="14" y2="28" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="34" y1="22" x2="40" y2="22" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="34" y1="28" x2="40" y2="28" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+              <rect x="17" y="34" width="5" height="8" rx="2" stroke="#7c3aed" stroke-width="1.5"/>
+              <rect x="26" y="34" width="5" height="8" rx="2" stroke="#7c3aed" stroke-width="1.5"/>
+              <circle cx="16" cy="14" r="1.5" fill="#06d6a0" opacity="0.8"/>
+              <circle cx="32" cy="14" r="1.5" fill="#06d6a0" opacity="0.8"/>
+            </svg>
+            <div>
+              <div style="font-family:var(--mono);font-size:0.7rem;color:var(--glow);">FUBOTICS — FACADE BOT V2</div>
+              <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);margin-top:0.2rem;">SYSTEM OK &nbsp;|&nbsp; LAST DEPLOY: 20m BUILDING</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label" data-type-label="// ABOUT"></div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="about-bio">
+            I'm an Embedded Systems &amp; Robotics Engineer who started building at age <strong>10</strong> with syringes and cardboard. Today I build <strong>facade-cleaning robots</strong>, design <strong>IoT backends</strong>, and ship <strong>AI systems</strong> — often all at once.<br/><br/>
+            I've been the sole technical person at an early-stage robotics startup, where I owned hardware, firmware, mechanical design, and software <em>end to end</em>. I've tested robots on the sides of buildings, hand-soldered drivers at 2AM, and debugged LoRa interference under a 3-phase motor system 15 days before deployment.<br/><br/>
+            I don't just build components. <strong>I build systems.</strong>
+          </p>
+          <p class="about-bio-subtitle">// 20+ projects. Only a few explosions.</p>
+        </div>
+        <div class="reveal delay-2">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dot red"></div>
+              <div class="terminal-dot yellow"></div>
+              <div class="terminal-dot green"></div>
+              <span class="terminal-title">nish@robotics:~$ status</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-row">
+                <span class="prompt">&gt;</span>
+                <span class="key">EXPERIENCE</span>
+                <span class="val highlight">2+ years production robotics</span>
+              </div>
+              <div class="terminal-row">
+                <span class="prompt">&gt;</span>
+                <span class="key">COMPANIES</span>
+                <span class="val">3 (Parram, CraftTech, Fubotics)</span>
+              </div>
+              <div class="terminal-row">
+                <span class="prompt">&gt;</span>
+                <span class="key">ROBOTS</span>
+                <span class="val orange">3 types, deployed to production</span>
+              </div>
+              <div class="terminal-row">
+                <span class="prompt">&gt;</span>
+                <span class="key">PROJECTS</span>
+                <span class="val highlight">20+ built</span>
+              </div>
+              <div class="terminal-row">
+                <span class="prompt">&gt;</span>
+                <span class="key">SOLDERING</span>
+                <span class="val">hand-spun perfboard TMC drivers</span>
+              </div>
+              <div class="terminal-row">
+                <span class="prompt">&gt;</span>
+                <span class="key">LOCATION</span>
+                <span class="val">Bengaluru, India</span>
+              </div>
+              <div class="terminal-row">
+                <span class="prompt">&gt;</span>
+                <span class="key">STATUS</span>
+                <span class="val" style="color:#27c93f;">OPEN TO OPPORTUNITIES</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider reveal"></div>
+
+  <!-- ====== EXPERIENCE ====== -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label" data-type-label="// EXPERIENCE"></div>
+      <h2 class="section-title">Where I've shipped robots.</h2>
+      <div class="timeline" id="timeline">
+
+        <!-- Fubotics -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-company">Fubotics Private Limited</div>
+          <div class="timeline-role">Technical Lead</div>
+          <div class="timeline-meta">
+            <span>⏱ Oct 2024 – Present</span>
+            <span>📍 Bengaluru</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Sole technical person for first year — full ownership: mechanical design, electronics, firmware, IoT backend, and team management</li>
+            <li>Built Facade Cleaning Robot V1 &amp; V2 (tested on 20m building) and Industrial Duct Cleaning Robot (multiple units deployed commercially)</li>
+            <li>Engineered LoRa-to-WiFi bridge to solve 3-phase motor interference — 15 days before deployment</li>
+            <li>Led team of 4–5 interns &amp; 2 employees; built Compass, an internal R&amp;D OS with RAG AI assistant (React, Supabase, pgvector, Gemini 2.5 Flash)</li>
+          </ul>
+        </div>
+
+        <!-- CraftTech -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-company">Craft Tech 360</div>
+          <div class="timeline-role">Embedded Engineer Intern</div>
+          <div class="timeline-meta">
+            <span>⏱ Apr 2024 – Jul 2024</span>
+            <span>📍 Bengaluru</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Built DMX-controlled LED systems and stepper/linear actuator control for stage production automation</li>
+            <li>Developed golf swing analyzer — IMU wearable sensor tracking speed, angle, and motion in real-time</li>
+          </ul>
+        </div>
+
+        <!-- Parram -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-company">Parram Innovations</div>
+          <div class="timeline-role">Junior Embedded Engineer</div>
+          <div class="timeline-meta">
+            <span>⏱ Jul 2023 – Mar 2024</span>
+            <span>📍 Bengaluru</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Drove ~90% of Kinetic Wave installation — 20+ synchronized stepper motors, hand-soldered TMC2209 driver perfboards from scratch</li>
+            <li>Electronics orchestrator across 4–5 kinetic art installations in production environments</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider reveal"></div>
+
+  <!-- ====== PROJECTS ====== -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label" data-type-label="// PROJECTS"></div>
+      <h2 class="section-title">Things I've built. <span style="color:var(--text-muted);font-size:0.7em;">20+</span></h2>
+
+      <div class="projects-grid" id="projects-grid">
+
+        <div class="project-card" data-cat="hardware" data-name="Facade Cleaning Robot V2" data-media-type="photos" data-media='["assets/facade-v2/V2.png"]'
+          data-desc="HOOK: Production-ready and field-deployed on 20-meter facades—a ground-up redesign engineered for reliability in commercial environments.
+
+V2 represents the transition from proof-of-concept to a deployable industrial system. I owned the complete technical stack—electronics, firmware, and backend. The communication architecture was overhauled with a dual LoRa and ESP-NOW stack, ensuring long-range stability and low-latency peer-to-peer control in outdoor environments where standard protocols often fail.
+
+The system is deeply integrated with Compass, an internal R&D OS I built to centralize operational telemetry. An AWS-hosted backend utilizing a Mosquitto MQTT broker and Flask API processes live robot data, while a Razorpay integration manages credit-based usage billing. This creates a full-circle lifecycle from physical actuation to commercial administration.
+
+The mechanical assembly underwent exhaustive iteration, with every 3D-printed component and structural bracket tested to failure and redesigned until it could survive real-world deployment. The result is a robust, autonomous platform capable of managing the unpredictable physical variables of modern building facades.
+
+KEY CHALLENGE: Achieving deterministic wireless communication on 20-meter structures where signal behavior is highly unpredictable. Integrating LoRa as the communication backbone solved the reliability issues of previous iterations, ensuring zero-latency control where any signal failure has immediate physical consequences."
+          data-tech="ESP32, LoRa, ESP-NOW, Embedded C, MQTT, Mosquitto, AWS, Flask, Razorpay, Compass Integration, REST API">
+          <div class="project-light"></div>
+          <div class="project-thumb">
+            <img class="project-img" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Facade Cleaning Robot V2" loading="lazy" />
+            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">HARDWARE</div>
+            <div class="project-name">Facade Cleaning Robot V2</div>
+            <div class="project-desc">Production-deployed facade cleaning robot featuring LoRa/ESP-NOW communication, AWS integration, and deep telemetry via Compass OS.</div>
+            <div class="project-tags">
+              <span class="project-tag">ESP32</span>
+              <span class="project-tag">LoRa</span>
+              <span class="project-tag">AWS Cloud</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-cat="hardware" data-name="Kinetic Rain Installation" data-media-type="photos" data-media='["assets/kinetic-rain/P1.jfif","assets/kinetic-rain/P2.jfif","assets/kinetic-rain/P3.jfif"]'
+          data-desc="HOOK: 18 independently controlled kinetic spheres choreographed into synchronized, high-precision wave patterns.
+
+Built to mimic the fluid organic motion of modern museum art pieces, this installation utilizes custom-weighted spheres and high-precision motor control to create complex vertical wave sequences. The architecture runs two Arduino Megas in a UART master-slave configuration, with the master handling timing while the slave distributes step/direction signals.
+
+The mechanical integrity relied on standard spheres being hand-filled with sand to provide enough mass for clean unspooling under gravity. Custom-machined pulleys manage the thread tension across the full range of motion, ensuring consistent travel across all 18 axes.
+
+TMC2209 stepper drivers were selected to ensure silent operation and ripple-free motion. Each ball follows a pre-programmed coordinate path with precise millisecond offsets, resulting in a seamless visual flow.
+
+KEY CHALLENGE: Achieving repeatable vertical motion across 18 independent axes simultaneously. This required an inter-dependent tuning of thread tension, sphere mass, pulley geometry, and motor timing; a single miscalibrated axis would immediately disrupt the overall visual coherence of the wave patterns."
+          data-tech="Arduino Mega x2, UART Communication, TMC2209 Stepper Drivers, NEMA Stepper Motors, Custom Pulleys, Sand-weighted Balls, Step/Dir Control">
+          <div class="project-light"></div>
+          <div class="project-thumb">
+            <img class="project-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Kinetic Rain Installation" loading="lazy" />
+            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">HARDWARE</div>
+            <div class="project-name">Kinetic Rain</div>
+            <div class="project-desc">Gallery-scale kinetic art featuring 18 synchronized stepper motors driving sand-weighted spheres in high-precision wave patterns.</div>
+            <div class="project-tags">
+              <span class="project-tag">TMC2209</span>
+              <span class="project-tag">UART Slave</span>
+              <span class="project-tag">Kinetic</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-cat="software" data-name="Neuron — Personal AI OS" data-media-type="photos" data-media='["assets/neuron/Screenshot 2026-04-14 173212.png","assets/neuron/Screenshot 2026-04-14 173233.png","assets/neuron/Screenshot 2026-04-14 173643.png","assets/neuron/Screenshot 2026-04-14 173748.png","assets/neuron/Screenshot 2026-04-14 173757.png","assets/neuron/Screenshot 2026-04-14 173923.png","assets/neuron/Screenshot 2026-04-14 173933.png","assets/neuron/Screenshot 2026-04-14 173950.png","assets/neuron/Screenshot 2026-04-14 174000.png"]'
+          data-desc="HOOK: A unified cognitive operating system that bridges the gap between task management, content ingestion, and personal reflection.
+
+Neuron was architected to solve the fragmentation of modern digital life by centralizing your entire cognitive workflow into three interconnected pillars within a single brain. Cortex serves as the ingestion engine, utilizing pgvector to embed and retrieve everything from research papers to voice notes. Locus provides context-aware task management, while Pulse acts as a living journal of personal growth and energy levels.
+
+The infrastructure is powered by a multi-model AI routing layer via OpenRouter, orchestrated by n8n automation pipelines. All data is securely stored and vectorized in Supabase, providing sub-millisecond semantic search capabilities. This ensures that a query about a topic from three months ago yields direct answers from YOUR saved knowledge, not generic web results.
+
+The system is built in React and deployed on Cloudflare Pages, currently operating in gated beta. By combining RAG pipelines with deep contextual awareness, Neuron transforms from a passive storage tool into an active personal assistant that understands how your saved insights and daily actions relate to one another over time.
+
+KEY CHALLENGE: Building a retrieval system that transcends basic semantic accuracy to achieve deep contextual awareness. Unlike generic RAG models that return isolated chunks, Neuron's retrieval engine was tuned to synthesize information across weeks of disparate journals and ingested articles, returning answers that feel authentic to the user's personal history."
+          data-tech="React, Supabase, pgvector, n8n, OpenRouter, Gemini API, Cloudflare Pages, RAG Pipeline, Vector Embeddings, Semantic Search" data-url="https://app-heyneuron.pages.dev">
+          <div class="project-light"></div>
+          <div class="project-thumb">
+            <img class="project-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Neuron — Personal AI OS" loading="lazy" />
+            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+          </div>
+          <div class="project-body">
+            <div class="project-category software">SOFTWARE</div>
+            <div class="project-name">Neuron AI OS</div>
+            <div class="project-desc">Cognitive OS consisting of Cortex (RAG Ingestion), Locus (Task Engine), and Pulse (Journal) modules running on a multi-model AI backbone.</div>
+            <div class="project-tags">
+              <span class="project-tag">n8n</span>
+              <span class="project-tag">pgvector</span>
+              <span class="project-tag">Deep RAG</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-cat="hardware" data-name="AI Voice Pendant" data-media-type="photos" data-media='["assets/ai-pendant/AI pendent 1.jpg","assets/ai-pendant/AI pendent 2.jpg"]'
+          data-desc="HOOK: A wearable, frictionless hardware interface for the Neuron OS—designed to capture spoken thoughts and ideas without ever pulling out a phone.
+
+The AI Voice Pendant is a minimal, palm-held device optimized for zero-friction interaction. Utilizing a Seeed Studio XIAO ESP32-S3 and an I2S MEMS microphone, the system records voice memos, encodes them as high-fidelity WAV files, and transmits them over WiFi for real-time transcription. An AI classification layer then instantly categorizes each entry as a task, idea, or reminder within the Neuron database.
+
+The mechanical integrity of the device relies on a custom-designed, 3D-printed enclosure featuring a precision snap-fit shell. This houses the embedded system, a LiPo battery with integrated charging circuitry, and a 2.4GHz antenna. The design went through over a dozen CAD iterations to ensure that the internal component layout remained compact enough for comfortable daily wear.
+
+By moving the capture point from a screen to a physical, dedicated interface, the pendant eliminates the cognitive overhead of traditional logging. It functions as a seamless extension of the user's memory, ensuring that no fleeting insight is lost to the friction of modern app-based interaction.
+
+KEY CHALLENGE: Minimizing the physical footprint of a complete embedded system without sacrificing connectivity or battery life. Fitting the ESP32-S3, microphone, and power management into a wearable shell required complex internal geometry and iterative print-testing to achieve a reliable snap-fit mechanism that is both durable and compact."
+          data-tech="Seeed Studio XIAO ESP32-S3, I2S MEMS Microphone, WAV Encoding, WiFi, REST API, LiPo Battery, Charging Circuit, 2.4GHz Antenna, 3D Printed Enclosure">
+          <div class="project-light"></div>
+          <div class="project-thumb">
+            <img class="project-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="AI Voice Pendant" loading="lazy" />
+            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">HARDWARE</div>
+            <div class="project-name">Smart Voice Pendant</div>
+            <div class="project-desc">Wearable ESP32-S3 vocal interface for Neuron OS featuring I2S audio capture and automated cloud transcription/categorization.</div>
+            <div class="project-tags">
+              <span class="project-tag">ESP32-S3</span>
+              <span class="project-tag">MEMS I2S</span>
+              <span class="project-tag">3D Precision</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-cat="hardware" data-name="BLE Gamepad — Steering Wheel + Pedals" data-media-type="video" data-media='["https://streamable.com/wv1odt"]'
+          data-desc="HOOK: A custom-built, driverless steering system that Windows recognizes as a native Bluetooth HID gamepad—ready for plug-and-play racing.
+
+Designed and 3D printed from the ground up, this rig features a full steering wheel and pedal assembly that houses an ESP32 presenting as a standard BLE Gamepad. Every input—from steering torque to accelerator, brake, and gear shifters—is mapped directly to Windows HID axes and buttons, requiring zero external software for native game recognition.
+
+The engineering challenge was a documented but silently-crashing hardware limitation of the ESP32: the conflict between the Bluetooth radio and ADC2 channels. When the BT radio is active, analog reads on ADC2 fail completely. I diagnosed the root cause, remapped all critical steering and throttle inputs to ADC1, and recalibrated the full analog range for precise, drift-free resolution.
+
+This build wasn't just a prototype; it was engineered for daily use. By overcoming Windows BLE pairing cache issues and hardware-level signal interference, I created a robust peripheral that maintains a permanent, stable link with modern racing sims.
+
+KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Bluetooth conflict. With no clear documentation pointing to the silent analog failure, I had to identify the interference pattern, migrate the architectural mapping to ADC1, and implement a full cache-flush procedure for Windows BLE HID descriptors."
+          data-tech="ESP32, BLE HID, BLEGamepad Library, ADC1 Remapping, 3D Printed Frame, Steering Wheel, Pedals, Gear Shifter, Windows HID">
+          <div class="project-light"></div>
+          <div class="project-thumb">
+            <img class="project-img" src="https://images.unsplash.com/photo-1592840496694-26d035b52b48?auto=format&fit=crop&w=800&q=80" alt="BLE Gamepad — Steering Wheel + Pedals" loading="lazy" />
+            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">HARDWARE</div>
+            <div class="project-name">BLE Gamepad Rig</div>
+            <div class="project-desc">Fully custom, 3D-printed racing peripheral featuring driverless Windows HID integration and hardware-level ADC conflict resolution.</div>
+            <div class="project-tags">
+              <span class="project-tag">ESP32</span>
+              <span class="project-tag">BLE HID</span>
+              <span class="project-tag">3D Print</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 3.5rem; position: relative; z-index: 20;">
+        <a href="builds.html" class="btn btn-outline" style="font-family: var(--mono); text-transform: uppercase;">[ + More Builds ]</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider reveal"></div>
+
+  <!-- ====== SKILLS ====== -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label" data-type-label="// SKILLS"></div>
+      <h2 class="section-title">The stack that ships robots.</h2>
+      
+      <div class="pcb-scroll-wrapper reveal">
+        <div class="pcb-board">
+          <div class="quad-label top-left">// Embedded &amp; Hardware</div>
+          <div class="quad-label top-right">// Mechanical Design</div>
+          <div class="quad-label bottom-left">// Software &amp; Backend</div>
+          <div class="quad-label bottom-right">// AI &amp; Tooling</div>
+
+          <svg class="pcb-traces" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+            <!-- Embedded Lines -->
+            <path id="t-esp-lora" class="pcb-trace trace-hw" data-nodes="esp32 lora" pathLength="100" d="M300 150 L300 120 L420 120" />
+            <path id="t-esp-ard" class="pcb-trace trace-hw" data-nodes="esp32 arduino" pathLength="100" d="M300 150 L300 220 L180 220" />
+            <path id="t-ard-bldc" class="pcb-trace trace-hw" data-nodes="arduino bldc" pathLength="100" d="M180 220 L120 220 L120 100" />
+            <path id="t-ard-step" class="pcb-trace trace-hw" data-nodes="arduino stepper" pathLength="100" d="M180 220 L250 220 L250 80" />
+            <path id="t-esp-mqtt" class="pcb-trace trace-hw" data-nodes="esp32 mqtt" pathLength="100" d="M300 150 L400 150 L400 250" />
+            <path id="t-ard-rs" class="pcb-trace trace-hw" data-nodes="arduino rs485" pathLength="100" d="M180 220 L180 280 L250 280" />
+            <path id="t-ard-i2c" class="pcb-trace trace-hw" data-nodes="arduino i2c" pathLength="100" d="M180 220 L150 220 L150 150" />
+            <path id="t-esp-spi" class="pcb-trace trace-hw" data-nodes="esp32 spi" pathLength="100" d="M300 150 L220 150 L220 180" />
+            <path id="t-rs-pcb" class="pcb-trace trace-hw" data-nodes="rs485 pcb" pathLength="100" d="M250 280 L80 280 L80 250" />
+            <path id="t-esp-espidf" class="pcb-trace trace-hw" data-nodes="esp32 espidf" pathLength="100" d="M300 150 L250 150 L250 25" />
+            <path id="t-esp-ec" class="pcb-trace trace-hw" data-nodes="esp32 ec" pathLength="100" d="M300 150 L300 50 L380 50" />
+            <path id="t-esp-ota" class="pcb-trace trace-hw" data-nodes="esp32 ota" pathLength="100" d="M300 150 L450 150 L450 60" />
+            <path id="t-esp-gpio" class="pcb-trace trace-hw" data-nodes="esp32 gpio" pathLength="100" d="M300 150 L350 150 L350 200" />
+            <path id="t-esp-ints" class="pcb-trace trace-hw" data-nodes="esp32 ints" pathLength="100" d="M300 150 L320 150 L320 80" />
+            <path id="t-ard-fw" class="pcb-trace trace-hw" data-nodes="arduino arduino_fw" pathLength="100" d="M180 220 L50 220 L50 200" />
+            <path id="t-ard-uart" class="pcb-trace trace-hw" data-nodes="arduino uart" pathLength="100" d="M180 220 L180 120" />
+            <path id="t-i2c-sensor" class="pcb-trace trace-hw" data-nodes="i2c sensor" pathLength="100" d="M150 150 L50 150 L50 100" />
+            <path id="t-i2c-adc" class="pcb-trace trace-hw" data-nodes="i2c adc" pathLength="100" d="M150 150 L80 150" />
+            <path id="t-step-tune" class="pcb-trace trace-hw" data-nodes="stepper motor_tune" pathLength="100" d="M250 80 L250 60 L200 60" />
+            <path id="t-bldc-pwm" class="pcb-trace trace-hw" data-nodes="bldc pwm" pathLength="100" d="M120 100 L120 50 L140 50" />
+            <path id="t-ard-cpp" class="pcb-trace trace-hw" data-nodes="arduino cpp" pathLength="100" d="M180 220 L120 220 L120 72" />
+            
+            <!-- Cross Quad Lines -->
+            <path id="t-esp-flask" class="pcb-trace trace-cross" data-nodes="esp32 flask" pathLength="100" d="M300 150 L300 400" />
+            <path id="t-lora-aws" class="pcb-trace trace-cross" data-nodes="lora aws" pathLength="100" d="M420 120 L450 120 L450 450" />
+            <path id="t-mqtt-aws" class="pcb-trace trace-cross" data-nodes="mqtt aws" pathLength="100" d="M400 250 L450 250 L450 450" />
+            <path id="t-arch-rag" class="pcb-trace trace-cross" data-nodes="arch rag" pathLength="100" d="M650 250 L700 250 L700 400" />
+            <path id="t-flask-rag" class="pcb-trace trace-cross" data-nodes="flask rag" pathLength="100" d="M300 400 L700 400" />
+            
+            <!-- Mechanical Lines -->
+            <path id="t-on-cad" class="pcb-trace trace-mech" data-nodes="onshape cad" pathLength="100" d="M750 150 L850 150 L850 250" />
+            <path id="t-on-3d" class="pcb-trace trace-mech" data-nodes="onshape 3dprint" pathLength="100" d="M750 150 L750 100 L650 100" />
+            <path id="t-on-sops" class="pcb-trace trace-mech" data-nodes="onshape sops" pathLength="100" d="M750 150 L920 150" />
+            <path id="t-cad-arch" class="pcb-trace trace-mech" data-nodes="cad arch" pathLength="100" d="M850 250 L650 250" />
+            <path id="t-on-wire" class="pcb-trace trace-mech" data-nodes="onshape wire" pathLength="100" d="M750 150 L700 150 L700 72" />
+            <path id="t-3d-proto" class="pcb-trace trace-mech" data-nodes="3dprint proto" pathLength="100" d="M650 100 L550 100" />
+            <path id="t-on-assem" class="pcb-trace trace-mech" data-nodes="onshape assem" pathLength="100" d="M750 150 L850 150 L850 80" />
+            <path id="t-cad-fast" class="pcb-trace trace-mech" data-nodes="cad fast" pathLength="100" d="M850 250 L950 250 L950 220" />
+
+            <!-- Software Lines -->
+            <path id="t-react-flask" class="pcb-trace trace-sw" data-nodes="react flask" pathLength="100" d="M150 500 L300 500 L300 400" />
+            <path id="t-flask-pg" class="pcb-trace trace-sw" data-nodes="flask postgres" pathLength="100" d="M300 400 L250 400 L250 550" />
+            <path id="t-flask-supa" class="pcb-trace trace-sw" data-nodes="flask supabase" pathLength="100" d="M300 400 L350 400 L350 520" />
+            <path id="t-supa-aws" class="pcb-trace trace-sw" data-nodes="supabase aws" pathLength="100" d="M350 520 L450 520 L450 450" />
+            <path id="t-flask-websock" class="pcb-trace trace-sw" data-nodes="flask websock" pathLength="100" d="M300 400 L180 400 L180 380" />
+            <path id="t-react-edge" class="pcb-trace trace-sw" data-nodes="react edge" pathLength="100" d="M150 500 L100 500 L100 450" />
+            <path id="t-react-rest" class="pcb-trace trace-sw" data-nodes="react rest" pathLength="100" d="M150 500 L120 500 L120 520" />
+            <path id="t-supa-vec" class="pcb-trace trace-sw" data-nodes="supabase vecsearch" pathLength="100" d="M350 520 L350 510 L200 510" />
+
+            <!-- AI Lines -->
+            <path id="t-rag-lang" class="pcb-trace trace-ai" data-nodes="rag langgraph" pathLength="100" d="M700 400 L850 400 L850 450" />
+            <path id="t-lang-or" class="pcb-trace trace-ai" data-nodes="langgraph openrouter" pathLength="100" d="M850 450 L850 510 L780 510" />
+            <path id="t-rag-vec" class="pcb-trace trace-ai" data-nodes="rag vectors" pathLength="100" d="M700 400 L620 400 L620 500" />
+            <path id="t-lang-crew" class="pcb-trace trace-ai" data-nodes="langgraph crewai" pathLength="100" d="M850 450 L920 450 L920 350" />
+            <path id="t-or-gem" class="pcb-trace trace-ai" data-nodes="openrouter gemini" pathLength="100" d="M780 550 L780 520 L900 520" />
+
+            <!-- Pulse Dots -->
+            <circle r="2.5" class="pulse-dot pulse-hw"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#t-esp-lora"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-hw"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#t-esp-ard"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-hw"><animateMotion dur="3.5s" repeatCount="indefinite"><mpath href="#t-esp-mqtt"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-cross"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#t-esp-flask"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-cross"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#t-lora-aws"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-mech"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#t-on-cad"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-sw"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#t-flask-supa"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-sw"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#t-supa-aws"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#t-rag-lang"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#t-lang-or"/></animateMotion></circle>
+          </svg>
+
+          <div class="pcb-nodes">
+            <!-- Embedded -->
+            <div class="pcb-node primary node-hw" data-id="esp32" data-cat="Embedded &amp; Hardware" style="left: 30%; top: 25%">ESP32</div>
+            <div class="pcb-node primary node-hw" data-id="arduino" data-cat="Embedded &amp; Hardware" style="left: 18%; top: 36.66%">Arduino</div>
+            <div class="pcb-node primary node-hw" data-id="lora" data-cat="Embedded &amp; Hardware" style="left: 42%; top: 20%">LoRa</div>
+            <div class="pcb-node primary node-hw" data-id="mqtt" data-cat="Embedded &amp; Hardware" style="left: 40%; top: 41.66%">MQTT</div>
+            <div class="pcb-node primary node-hw" data-id="bldc" data-cat="Embedded &amp; Hardware" style="left: 12%; top: 16.66%">BLDC Motors</div>
+            <div class="pcb-node primary node-hw" data-id="stepper" data-cat="Embedded &amp; Hardware" style="left: 25%; top: 13.33%">Stepper Motors</div>
+            <div class="pcb-node primary node-hw" data-id="rs485" data-cat="Embedded &amp; Hardware" style="left: 25%; top: 46.66%">RS485</div>
+            <div class="pcb-node node-hw" data-id="i2c" data-cat="Embedded &amp; Hardware" style="left: 15%; top: 25%">I2C</div>
+            <div class="pcb-node node-hw" data-id="spi" data-cat="Embedded &amp; Hardware" style="left: 22%; top: 30%">SPI</div>
+            <div class="pcb-node node-hw" data-id="pcb" data-cat="Embedded &amp; Hardware" style="left: 8%; top: 41.66%">PCB Design</div>
+            <!-- Added Embedded Nodes -->
+            <div class="pcb-node primary node-hw" data-id="ec" data-cat="Embedded &amp; Hardware" style="left: 38%; top: 8.33%">Embedded C</div>
+            <div class="pcb-node primary node-hw" data-id="cpp" data-cat="Embedded &amp; Hardware" style="left: 12%; top: 12%">C++</div>
+            <div class="pcb-node node-hw" data-id="uart" data-cat="Embedded &amp; Hardware" style="left: 18%; top: 20%">UART</div>
+            <div class="pcb-node node-hw" data-id="gpio" data-cat="Embedded &amp; Hardware" style="left: 35%; top: 33.33%">GPIO</div>
+            <div class="pcb-node node-hw" data-id="adc" data-cat="Embedded &amp; Hardware" style="left: 8%; top: 25%">ADC</div>
+            <div class="pcb-node node-hw" data-id="pwm" data-cat="Embedded &amp; Hardware" style="left: 14%; top: 8.33%">PWM</div>
+            <div class="pcb-node node-hw" data-id="ints" data-cat="Embedded &amp; Hardware" style="left: 32%; top: 13.33%">Interrupt Handling</div>
+            <div class="pcb-node node-hw" data-id="ota" data-cat="Embedded &amp; Hardware" style="left: 45%; top: 10%">OTA Updates</div>
+            <div class="pcb-node primary node-hw" data-id="espidf" data-cat="Embedded &amp; Hardware" style="left: 25%; top: 4.16%">ESP-IDF</div>
+            <div class="pcb-node node-hw" data-id="arduino_fw" data-cat="Embedded &amp; Hardware" style="left: 5%; top: 33.33%">Arduino Framework</div>
+            <div class="pcb-node node-hw" data-id="sensor" data-cat="Embedded &amp; Hardware" style="left: 5%; top: 16.66%">Sensor Fusion</div>
+            <div class="pcb-node node-hw" data-id="motor_tune" data-cat="Embedded &amp; Hardware" style="left: 20%; top: 10%">Motor Tuning</div>
+            
+            <!-- Mechanical -->
+            <div class="pcb-node primary node-mech" data-id="onshape" data-cat="Mechanical Design" style="left: 75%; top: 25%">Onshape</div>
+            <div class="pcb-node primary node-mech" data-id="cad" data-cat="Mechanical Design" style="left: 85%; top: 41.66%">Production CAD</div>
+            <div class="pcb-node node-mech" data-id="3dprint" data-cat="Mechanical Design" style="left: 65%; top: 16.66%">3D Printing</div>
+            <div class="pcb-node node-mech" data-id="sops" data-cat="Mechanical Design" style="left: 92%; top: 25%">Manufacturing SOPs</div>
+            <div class="pcb-node node-mech" data-id="arch" data-cat="Mechanical Design" style="left: 65%; top: 41.66%">System Architecture</div>
+            <!-- Added Mechanical Nodes -->
+            <div class="pcb-node node-mech" data-id="wire" data-cat="Mechanical Design" style="left: 70%; top: 12%">Wiring Harness Design</div>
+            <div class="pcb-node node-mech" data-id="proto" data-cat="Mechanical Design" style="left: 55%; top: 16.66%">Prototyping</div>
+            <div class="pcb-node node-mech" data-id="assem" data-cat="Mechanical Design" style="left: 85%; top: 13.33%">Assembly Design</div>
+            <div class="pcb-node node-mech" data-id="fast" data-cat="Mechanical Design" style="left: 95%; top: 36.66%">Fastener Selection</div>
+            
+            <!-- Software -->
+            <div class="pcb-node primary node-sw" data-id="flask" data-cat="Software &amp; Backend" style="left: 30%; top: 66.66%">Flask</div>
+            <div class="pcb-node primary node-sw" data-id="react" data-cat="Software &amp; Backend" style="left: 15%; top: 83.33%">React</div>
+            <div class="pcb-node primary node-sw" data-id="supabase" data-cat="Software &amp; Backend" style="left: 35%; top: 86.66%">Supabase</div>
+            <div class="pcb-node primary node-sw" data-id="aws" data-cat="Software &amp; Backend" style="left: 45%; top: 75%">AWS</div>
+            <div class="pcb-node node-sw" data-id="postgres" data-cat="Software &amp; Backend" style="left: 25%; top: 91.66%">PostgreSQL</div>
+            <div class="pcb-node node-sw" data-id="rest" data-cat="Software &amp; Backend" style="left: 12%; top: 86.66%">REST APIs</div>
+            <!-- Added Software Nodes -->
+            <div class="pcb-node node-sw" data-id="websock" data-cat="Software &amp; Backend" style="left: 18%; top: 63.33%">WebSockets</div>
+            <div class="pcb-node node-sw" data-id="edge" data-cat="Software &amp; Backend" style="left: 10%; top: 75%">Edge Functions</div>
+            <div class="pcb-node node-sw" data-id="vecsearch" data-cat="Software &amp; Backend" style="left: 20%; top: 85%">Vector Search</div>
+
+            <!-- AI -->
+            <div class="pcb-node primary node-ai" data-id="rag" data-cat="AI &amp; Tooling" style="left: 70%; top: 66.66%">RAG Systems</div>
+            <div class="pcb-node primary node-ai" data-id="langgraph" data-cat="AI &amp; Tooling" style="left: 85%; top: 75%">LangGraph</div>
+            <div class="pcb-node primary node-ai" data-id="openrouter" data-cat="AI &amp; Tooling" style="left: 78%; top: 85%">OpenRouter</div>
+            <div class="pcb-node node-ai" data-id="crewai" data-cat="AI &amp; Tooling" style="left: 92%; top: 58.33%">CrewAI</div>
+            <div class="pcb-node node-ai" data-id="vectors" data-cat="AI &amp; Tooling" style="left: 62%; top: 83.33%">Vector DBs</div>
+            <div class="pcb-node node-ai" data-id="gemini" data-cat="AI &amp; Tooling" style="left: 90%; top: 86.66%">Gemini API</div>
+          </div>
+        </div>
+      </div><!-- /pcb-scroll-wrapper -->
+
+      <!-- ── MOBILE SKILLS GRID (hidden on desktop, shown on mobile) ── -->
+      <div class="skills-mobile-grid">
+
+        <!-- Embedded & Hardware -->
+        <div class="skill-card-m hw">
+          <div class="skill-card-m-label">// Embedded</div>
+          <div class="skill-tags-m">
+            <span class="skill-tag-m primary">ESP32</span>
+            <span class="skill-tag-m primary">Arduino</span>
+            <span class="skill-tag-m primary">ESP-IDF</span>
+            <span class="skill-tag-m primary">Embedded C</span>
+            <span class="skill-tag-m primary">C++</span>
+            <span class="skill-tag-m">UART</span>
+            <span class="skill-tag-m">I2C</span>
+            <span class="skill-tag-m">SPI</span>
+            <span class="skill-tag-m">GPIO</span>
+            <span class="skill-tag-m">ADC</span>
+            <span class="skill-tag-m">PWM</span>
+            <span class="skill-tag-m">LoRa</span>
+            <span class="skill-tag-m">MQTT</span>
+            <span class="skill-tag-m primary">BLDC Motors</span>
+            <span class="skill-tag-m primary">Stepper Motors</span>
+            <span class="skill-tag-m">RS485</span>
+            <span class="skill-tag-m">PCB Design</span>
+            <span class="skill-tag-m">OTA Updates</span>
+            <span class="skill-tag-m">Sensor Fusion</span>
+            <span class="skill-tag-m">Motor Tuning</span>
+            <span class="skill-tag-m">Interrupt Handling</span>
+          </div>
+        </div>
+
+        <!-- Mechanical Design -->
+        <div class="skill-card-m mech">
+          <div class="skill-card-m-label">// Mechanical</div>
+          <div class="skill-tags-m">
+            <span class="skill-tag-m primary">Onshape</span>
+            <span class="skill-tag-m primary">Production CAD</span>
+            <span class="skill-tag-m">3D Printing</span>
+            <span class="skill-tag-m">Prototyping</span>
+            <span class="skill-tag-m">Assembly Design</span>
+            <span class="skill-tag-m">Wiring Harness</span>
+            <span class="skill-tag-m">Manufacturing SOPs</span>
+            <span class="skill-tag-m">System Architecture</span>
+            <span class="skill-tag-m">Fastener Selection</span>
+          </div>
+        </div>
+
+        <!-- Software & Backend -->
+        <div class="skill-card-m sw">
+          <div class="skill-card-m-label">// Software</div>
+          <div class="skill-tags-m">
+            <span class="skill-tag-m primary">Flask</span>
+            <span class="skill-tag-m primary">React</span>
+            <span class="skill-tag-m primary">Supabase</span>
+            <span class="skill-tag-m primary">AWS</span>
+            <span class="skill-tag-m">PostgreSQL</span>
+            <span class="skill-tag-m">REST APIs</span>
+            <span class="skill-tag-m">WebSockets</span>
+            <span class="skill-tag-m">Edge Functions</span>
+            <span class="skill-tag-m">Vector Search</span>
+          </div>
+        </div>
+
+        <!-- AI & Tooling -->
+        <div class="skill-card-m ai">
+          <div class="skill-card-m-label">// AI & Tooling</div>
+          <div class="skill-tags-m">
+            <span class="skill-tag-m primary">RAG Systems</span>
+            <span class="skill-tag-m primary">LangGraph</span>
+            <span class="skill-tag-m primary">OpenRouter</span>
+            <span class="skill-tag-m">CrewAI</span>
+            <span class="skill-tag-m">Vector DBs</span>
+            <span class="skill-tag-m">Gemini API</span>
+          </div>
+        </div>
+
+      </div><!-- /skills-mobile-grid -->
+
+    </div>
+  </section>
+
+  <div class="glow-divider reveal"></div>
+
+  <!-- ====== BEYOND THE LAB ====== -->
+  <section id="beyond">
+    <div class="container">
+      <div class="section-label" data-type-label="// BEYOND THE LAB"></div>
+      <h2 class="section-title reveal">Building people, not just hardware.</h2>
+      <div class="beyond-grid">
+        
+        <!-- VoltHub Card -->
+        <div class="terminal-card beyond-card volthub-card reveal delay-1">
+          <div class="terminal-header">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <span class="terminal-title">nish@volthub:~$ cat overview.info</span>
+          </div>
+          <div class="beyond-body">
+            <div class="beyond-icon" style="color:var(--secondary);">⚡</div>
+            <div class="beyond-content text-content">
+              <h3 class="beyond-title" style="color:var(--glow);">Founder — VoltHub Robotics Club</h3>
+              <p class="beyond-desc">
+                Founded a college robotics club from scratch. Ran 60+ hands-on sessions teaching embedded systems and robotics. Organized a racing day with 14 cars competing on day one. Merit-based selection, zero fluff.
+              </p>
+            </div>
+            
+            <div class="beyond-carousel-wrapper" id="volthub-carousel">
+              <div class="mc-track">
+                <!-- Drop images named 1.jpg to 10.jpg inside assets/volthub/ -->
+                <div class="mc-slide active"><img src="assets/volthub/1.png" alt="VoltHub 1" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 1.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/2.jpg" alt="VoltHub 2" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 2.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/3.jpg" alt="VoltHub 3" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 3.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/4.jpg" alt="VoltHub 4" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 4.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/5.jpg" alt="VoltHub 5" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 5.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/6.jpg" alt="VoltHub 6" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 6.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/7.jpg" alt="VoltHub 7" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 7.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/8.jpg" alt="VoltHub 8" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 8.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/9.jpg" alt="VoltHub 9" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 9.jpg</p></div>'" /></div>
+                <div class="mc-slide"><img src="assets/volthub/10.jpg" alt="VoltHub 10" onerror="this.outerHTML='<div class=\'mc-placeholder\'><span>📷</span><p>Add 10.jpg</p></div>'" /></div>
+              </div>
+              <button class="mc-arrow mc-prev" aria-label="Previous">‹</button>
+              <button class="mc-arrow mc-next" aria-label="Next">›</button>
+              <div class="mc-dots">
+                <button class="mc-dot active" aria-label="slide 1"></button>
+                <button class="mc-dot" aria-label="slide 2"></button>
+                <button class="mc-dot" aria-label="slide 3"></button>
+                <button class="mc-dot" aria-label="slide 4"></button>
+                <button class="mc-dot" aria-label="slide 5"></button>
+                <button class="mc-dot" aria-label="slide 6"></button>
+                <button class="mc-dot" aria-label="slide 7"></button>
+                <button class="mc-dot" aria-label="slide 8"></button>
+                <button class="mc-dot" aria-label="slide 9"></button>
+                <button class="mc-dot" aria-label="slide 10"></button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- Rotaract Card -->
+        <div class="terminal-card beyond-card rotaract-card reveal delay-2">
+          <div class="terminal-header">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <span class="terminal-title">nish@rotaract:~$ cat profile.info</span>
+          </div>
+          <div class="beyond-body">
+            <div class="beyond-icon" style="color:var(--text-muted);">🤝</div>
+            <div class="beyond-content text-content">
+              <h3 class="beyond-title" style="color:var(--glow);">Partnership Director & Treasurer — Rotaract</h3>
+              <p class="beyond-desc">
+                <strong style="color:var(--text);font-weight:600;">Rotaract Club of Bangalore & Rotaract Club of RCE</strong><br/><br/>
+                Partnership Director at Rotaract Club of Bangalore — managed sponsorships, partnerships, and fundraising. Led events including a founder panel targeting 200-250 attendees.<br/><br/>
+                Previously served as Treasurer for two years at Rotaract Club of Rajarajeswari College of Engineering — handled all club finances, budgeting, and fund management.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider reveal"></div>
+
+  <!-- ====== CONTACT ====== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label" data-type-label="// CONTACT"></div>
+      <div class="contact-wrapper">
+        <div class="reveal">
+          <h2 class="section-title" style="margin-bottom:1rem;">Let's build something real.</h2>
+          <p class="contact-intro">
+            I'm open to <strong>robotics, embedded systems, and hardware-first startup roles</strong> in Bengaluru.<br/>
+            Not looking for pure software work — I want to be in the lab, in the field, shipping systems that exist in the physical world.
+          </p>
+          <div class="contact-cta-area">
+            <a href="./resume.pdf" download="Nishanth_K_Resume.pdf" class="btn btn-solid">↓ Download Resume</a>
+            <a href="mailto:thisisnish88@gmail.com" class="btn btn-outline">✉ Send Email</a>
+          </div>
+        </div>
+        <div class="reveal delay-2">
+          <div class="terminal-card contact-terminal" id="contact-terminal">
+            <div class="terminal-header">
+              <div class="terminal-dot red"></div>
+              <div class="terminal-dot yellow"></div>
+              <div class="terminal-dot green"></div>
+              <span class="terminal-title">nish@contact:~$ links</span>
+            </div>
+            <div class="contact-links" id="contact-typed-area">
+              <a href="mailto:thisisnish88@gmail.com" class="contact-row">
+                <span class="contact-prompt">&gt;</span>
+                <span class="contact-row-key">EMAIL</span>
+                <span class="contact-row-val">thisisnish88@gmail.com</span>
+              </a>
+              <a href="https://linkedin.com/in/nishanth-k-b0b0b2250" target="_blank" class="contact-row">
+                <span class="contact-prompt">&gt;</span>
+                <span class="contact-row-key">LINKEDIN</span>
+                <span class="contact-row-val">linkedin.com/in/nishanth-k</span>
+              </a>
+              <a href="https://github.com/thisisnish88-code" target="_blank" class="contact-row">
+                <span class="contact-prompt">&gt;</span>
+                <span class="contact-row-key">GITHUB</span>
+                <span class="contact-row-val">github.com/thisisnish88-code</span>
+              </a>
+              <a href="https://app-heyneuron.pages.dev" target="_blank" class="contact-row">
+                <span class="contact-prompt">&gt;</span>
+                <span class="contact-row-key">NEURON</span>
+                <span class="contact-row-val">app-heyneuron.pages.dev</span>
+              </a>
+              <div class="contact-row" style="cursor:default;">
+                <span class="contact-prompt">&gt;</span>
+                <span class="contact-row-key">STATUS</span>
+                <span class="contact-row-val" style="color:var(--secondary);">OPEN TO OPPORTUNITIES_<span class="boot-cursor"></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="footer-copy">
+      <strong>NISHANTH K</strong> &copy; 2026 &nbsp;|&nbsp; Built by Nish
+    </div>
+    <div class="footer-socials">
+      <a href="https://github.com/thisisnish88-code" target="_blank">↗ GitHub</a>
+      <a href="https://linkedin.com/in/nishanth-k-b0b0b2250" target="_blank">↗ LinkedIn</a>
+      <a href="https://app-heyneuron.pages.dev" target="_blank">↗ Neuron</a>
+    </div>
+  </footer>
+
+  <!-- ====== STATUS BAR ====== -->
+  <div class="status-bar">
+    <div>
+      <span class="status-indicator"><span class="status-dot"></span> SYSTEM ONLINE</span>
+    </div>
+    <div class="status-bar-right">
+      <span>BENGALURU, IND</span>
+      <span>UTC+5:30</span>
+      <span>v2.0.26</span>
+    </div>
+  </div>
+
+  <!-- ====== PROJECT MODAL ====== -->
+  <div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <div class="modal-media" id="modal-media">
+        <!-- populated dynamically by script.js -->
+      </div>
+      <div class="modal-scrollbox">
+        <div class="modal-header">
+          <div>
+            <div id="modal-category" class="project-category" style="margin-bottom:0.4rem;"></div>
+            <div id="modal-title" class="modal-title"></div>
+          </div>
+          <!-- modal close button moved inside modal, positioned via css -->
+        </div>
+        <div class="modal-body">
+          <p id="modal-desc" class="modal-desc"></p>
+          <div id="modal-tags" class="modal-tags"></div>
+          <div id="modal-links" class="modal-links" style="margin-top: 1.5rem; display: none;">
+            <a id="modal-live-link" href="#" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem;">↗ View Live</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

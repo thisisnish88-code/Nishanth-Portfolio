@@ -1,0 +1,165 @@
+/* ============================================================
+   MODAL MEDIA — Photo Carousel + Video Player
+   ============================================================ */
+
+/* Container that replaces the old modal-hero img */
+.modal-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: rgba(10, 5, 25, 0.9);
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (min-width: 900px) {
+  .modal-media {
+    width: 55%; /* Media takes 55% of width */
+    height: 100%; /* Fill full height */
+    aspect-ratio: auto; /* Remove rigid aspect ratio */
+    border-radius: 16px 0 0 16px;
+    border-right: 1px solid var(--border);
+  }
+}
+
+/* ---- PLACEHOLDER (no media yet) ---- */
+.mc-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+.mc-placeholder span {
+  font-size: 2rem;
+  opacity: 0.4;
+}
+.mc-placeholder p {
+  opacity: 0.5;
+}
+
+/* ---- PHOTO CAROUSEL ---- */
+.mc-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mc-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.mc-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mc-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  background: #000;
+}
+
+/* Arrow navigation buttons */
+.mc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 4, 28, 0.65);
+  border: 1px solid rgba(60, 35, 100, 0.9);
+  color: #e2d9f3;
+  font-size: 1.6rem;
+  line-height: 1;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(6px);
+}
+.mc-arrow:hover {
+  background: rgba(124, 58, 237, 0.12);
+  border-color: #7c3aed;
+  color: #a855f7;
+}
+.mc-prev { left: 0.75rem; }
+.mc-next { right: 0.75rem; }
+
+/* Dot indicators */
+.mc-dots {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 5;
+}
+.mc-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(226, 217, 243, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+  padding: 0;
+}
+.mc-dot.active {
+  background: #a855f7;
+  transform: scale(1.35);
+}
+
+/* ---- VIDEO PLAYER ---- */
+.mv-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.mv-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.mv-unmute {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: rgba(10, 4, 28, 0.70);
+  border: 1px solid rgba(60, 35, 100, 0.9);
+  color: #e2d9f3;
+  font-size: 1.1rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(6px);
+}
+.mv-unmute:hover {
+  background: rgba(124, 58, 237, 0.12);
+  border-color: #7c3aed;
+}
