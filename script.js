@@ -77,27 +77,29 @@ window.addEventListener('resize', () => {
   });
 });
 
-// ---- Single very subtle nebula — just a deep purple vignette tint ----
+// ---- Subtle nebula — Deep breathing purple vignettes ----
 const nebulae = [
-  { cx: 0.68, cy: 0.18, r: 0.35, color: '90,40,180',   alpha: 0.022, phase: 0,   speed: 0.0003 },
-  { cx: 0.18, cy: 0.72, r: 0.28, color: '110,50,200',  alpha: 0.016, phase: 2.5, speed: 0.0004 },
+  { cx: 0.5, cy: 0.5, r: 0.45, color: '80,30,160',  alpha: 0.03, phase: 0,   speed: 0.0004 },
+  { cx: 0.2, cy: 0.8, r: 0.35, color: '100,40,180', alpha: 0.02, phase: 2.0, speed: 0.0003 },
+  { cx: 0.8, cy: 0.2, r: 0.40, color: '110,50,200', alpha: 0.02, phase: 4.0, speed: 0.0005 },
 ];
 
 // ---- Occasional shooting stars (rare, graceful) ----
 const shooters = [];
-let nextShooter = Date.now() + 6000 + Math.random() * 8000; // less frequent
+let nextShooter = Date.now() + 2000 + Math.random() * 4000;
 
 function spawnShooter() {
   const side  = Math.random() < 0.6 ? 'top' : 'right';
-  const angle = (20 + Math.random() * 15) * (Math.PI / 180);
+  const angle = (20 + Math.random() * 25) * (Math.PI / 180);
+  const speed = 1.5 + Math.random() * 2.0; // much slower, calm comets
   shooters.push({
     x:     side === 'top' ? Math.random() * spaceCanvas.width : spaceCanvas.width + 10,
-    y:     side === 'top' ? -10 : Math.random() * spaceCanvas.height * 0.4,
-    vx:    side === 'top' ?  Math.cos(angle) * 10 :  -Math.cos(angle) * 10,
-    vy:    side === 'top' ?  Math.sin(angle) * 10 :   Math.sin(angle) * 9,
+    y:     side === 'top' ? -10 : Math.random() * spaceCanvas.height * 0.6,
+    vx:    side === 'top' ?  Math.cos(angle) * speed :  -Math.cos(angle) * speed,
+    vy:    side === 'top' ?  Math.sin(angle) * speed :   Math.sin(angle) * speed * 0.9,
     life:  1.0,
-    decay: 0.014 + Math.random() * 0.012, // slower fade
-    len:   40 + Math.random() * 45,
+    decay: 0.002 + Math.random() * 0.002, // very slow fade
+    len:   80 + Math.random() * 100, // much longer tail
   });
 }
 
@@ -107,24 +109,27 @@ function drawSpace() {
   const W = spaceCanvas.width, H = spaceCanvas.height;
   sCtxS.clearRect(0, 0, W, H);
 
-  // 1. Very dark, calm space gradient — slightly warmer center
-  const grad = sCtxS.createRadialGradient(W * 0.5, H * 0.4, 0, W * 0.5, H * 0.5, Math.max(W, H) * 0.85);
-  grad.addColorStop(0,   'rgba(8, 4, 20, 1)');
-  grad.addColorStop(0.6, 'rgba(5, 2, 14, 1)');
-  grad.addColorStop(1,   'rgba(3, 1,  9, 1)');
+  spaceT += 0.012; // slow down the breathing
+
+  // 1. Very dark, calm space gradient — breathing warm center
+  const breath = Math.sin(spaceT * 0.5) * 0.1; 
+  const grad = sCtxS.createRadialGradient(W * 0.5, H * 0.4, 0, W * 0.5, H * 0.5, Math.max(W, H) * (0.85 + breath));
+  grad.addColorStop(0,   'rgba(14, 7, 30, 1)'); // slightly lighter deep purple center
+  grad.addColorStop(0.6, 'rgba(6, 3, 16, 1)');
+  grad.addColorStop(1,   'rgba(2, 1, 6, 1)'); // pitch black edges
   sCtxS.fillStyle = grad;
   sCtxS.fillRect(0, 0, W, H);
 
-  // 2. Very subtle nebula — barely-there purple vignettes
-  spaceT += 0.016;
+  // 2. Breathing nebula — slow pulsing vignettes
   nebulae.forEach(n => {
-    const pulse = Math.sin(spaceT * n.speed * 100 + n.phase) * 0.008;
-    const r     = (n.r + pulse) * Math.max(W, H);
+    // Make pulse wider and more noticeable for the breathing effect
+    const pulse = Math.sin(spaceT * n.speed * 100 + n.phase) * 0.05;
+    const r     = Math.max(0, (n.r + pulse) * Math.max(W, H));
     const cx    = n.cx * W;
     const cy    = n.cy * H;
     const g     = sCtxS.createRadialGradient(cx, cy, 0, cx, cy, r);
     g.addColorStop(0,   `rgba(${n.color}, ${n.alpha})`);
-    g.addColorStop(0.5, `rgba(${n.color}, ${n.alpha * 0.25})`);
+    g.addColorStop(0.5, `rgba(${n.color}, ${n.alpha * 0.3})`);
     g.addColorStop(1,   `rgba(${n.color}, 0)`);
     sCtxS.fillStyle = g;
     sCtxS.fillRect(0, 0, W, H);
@@ -136,21 +141,21 @@ function drawSpace() {
     const alpha = s.base + Math.sin(s.phase) * (s.base * 0.5);
     sCtxS.beginPath();
     sCtxS.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    // Only very large stars get a faint glow (subtle)
+    // Glow for large stars
     if (s.r > 0.82) {
-      sCtxS.shadowBlur  = 3;
-      sCtxS.shadowColor = `rgba(200, 185, 255, ${alpha * 0.4})`;
+      sCtxS.shadowBlur  = 4;
+      sCtxS.shadowColor = `rgba(200, 185, 255, ${alpha * 0.5})`;
     }
     sCtxS.fillStyle = `rgba(215, 205, 255, ${alpha})`;
     sCtxS.fill();
     sCtxS.shadowBlur = 0;
   });
 
-  // 4. Constant "Comet / Circuit Data Stream" background
+  // 4. Calm Comets background
   const now = Date.now();
   if (now > nextShooter) {
     spawnShooter();
-    nextShooter = now + 600 + Math.random() * 1400; // Frequent data comets
+    nextShooter = now + 5000 + Math.random() * 6000; // Calm, infrequent comets
   }
 
   for (let i = shooters.length - 1; i >= 0; i--) {
@@ -160,20 +165,21 @@ function drawSpace() {
     sh.life -= sh.decay;
     if (sh.life <= 0) { shooters.splice(i, 1); continue; }
 
-    const tailX = sh.x - sh.vx * (sh.len / Math.hypot(sh.vx, sh.vy));
-    const tailY = sh.y - sh.vy * (sh.len / Math.hypot(sh.vx, sh.vy));
+    const speedHypot = Math.hypot(sh.vx, sh.vy);
+    const tailX = sh.x - sh.vx * (sh.len / speedHypot);
+    const tailY = sh.y - sh.vy * (sh.len / speedHypot);
     const lg    = sCtxS.createLinearGradient(tailX, tailY, sh.x, sh.y);
     lg.addColorStop(0,   `rgba(255,255,255,0)`);
-    lg.addColorStop(0.5, `rgba(168,85,247, ${sh.life * 0.4})`); // glowing purple tail
-    lg.addColorStop(1,   `rgba(255,255,255, ${sh.life})`);       // bright white head
+    lg.addColorStop(0.5, `rgba(168,85,247, ${sh.life * 0.3})`); // softer glow
+    lg.addColorStop(1,   `rgba(255,255,255, ${sh.life * 0.8})`); 
     
     sCtxS.beginPath();
     sCtxS.moveTo(tailX, tailY);
     sCtxS.lineTo(sh.x, sh.y);
     sCtxS.strokeStyle = lg;
-    sCtxS.lineWidth   = sh.life * 2.5; // Thicker, more prominent comet trails
-    sCtxS.shadowBlur  = 12;            // Strong background glow for comets
-    sCtxS.shadowColor = '#a855f7';
+    sCtxS.lineWidth   = sh.life * 1.5; // Thinner, sharper comet
+    sCtxS.shadowBlur  = 15;            // Wider glow
+    sCtxS.shadowColor = `rgba(168, 85, 247, ${sh.life * 0.8})`;
     sCtxS.stroke();
     sCtxS.shadowBlur  = 0;
   }
