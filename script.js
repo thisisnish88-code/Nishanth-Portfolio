@@ -58,24 +58,23 @@ function resizeSpaceCanvas() {
 resizeSpaceCanvas();
 window.addEventListener('resize', resizeSpaceCanvas);
 
-// ---- Stars — fewer, calmer, very subtle ----
-const STAR_COUNT = 320;
+// ---- Stars — dense, tiny, mostly white/blue-white ----
+const STAR_COUNT = 400;
 const stars = Array.from({ length: STAR_COUNT }, () => {
   const tier = Math.random();
-  const r = tier > 0.95 ? 2.2 + Math.random() * 1.8   // 5% large (distant suns)
-           : tier > 0.80 ? 1.2 + Math.random() * 1.0   // 15% medium
-           :               0.3 + Math.random() * 0.7;   // 80% tiny
+  const r = tier > 0.97 ? 1.6 + Math.random() * 1.2
+           : tier > 0.85 ? 0.8 + Math.random() * 0.6
+           :               0.2 + Math.random() * 0.4;
   return {
     x:     Math.random() * window.innerWidth,
     y:     Math.random() * window.innerHeight,
     r,
     phase: Math.random() * Math.PI * 2,
-    speed: 0.002 + Math.random() * 0.004,
-    base:  r > 1.5 ? 0.45 + Math.random() * 0.35 : 0.12 + Math.random() * 0.25,
+    speed: 0.001 + Math.random() * 0.003,
+    base:  r > 1.2 ? 0.5 + Math.random() * 0.3 : 0.15 + Math.random() * 0.2,
   };
 });
 
-// Reposition stars after resize
 window.addEventListener('resize', () => {
   stars.forEach(s => {
     s.x = Math.random() * window.innerWidth;
@@ -83,47 +82,32 @@ window.addEventListener('resize', () => {
   });
 });
 
-// ---- Subtle nebula — Deep breathing purple vignettes ----
-const nebulae = [
-  { cx: 0.5,  cy: 0.5,  r: 0.45, color: '80,30,160',   alpha: 0.13, phase: 0,   speed: 0.0004 },
-  { cx: 0.2,  cy: 0.8,  r: 0.35, color: '6,214,160',   alpha: 0.10, phase: 2.0, speed: 0.0003 },
-  { cx: 0.8,  cy: 0.2,  r: 0.40, color: '255,160,60',  alpha: 0.08, phase: 4.0, speed: 0.0005 },
-  { cx: 0.65, cy: 0.6,  r: 0.30, color: '160,30,200',  alpha: 0.09, phase: 1.2, speed: 0.0003 },
-];
-
-// ---- Environment Planets & Asteroids (Subtle) ----
+// ---- Distant planets — small, far away ----
 const planets = [
-  { cx: 0.08,  cy: 0.28, r: 0.055, color: '100,70,200',  alpha: 0.22, speed: 0.00015, hasRing: true  },
-  { cx: 0.88,  cy: 0.75, r: 0.018, color: '200,140,255', alpha: 0.28, speed: -0.0001, hasRing: false },
-  { cx: 0.55,  cy: 0.12, r: 0.010, color: '255,120,100', alpha: 0.20, speed: 0.00006, hasRing: false },
+  { cx: 0.12, cy: 0.22, r: 0.018, color: '140,100,220', alpha: 0.55, speed: 0.00008,  hasRing: true  },
+  { cx: 0.82, cy: 0.68, r: 0.010, color: '180,160,255', alpha: 0.45, speed: -0.00006, hasRing: false },
+  { cx: 0.60, cy: 0.88, r: 0.007, color: '200,190,255', alpha: 0.40, speed: 0.00004,  hasRing: false },
+  { cx: 0.35, cy: 0.08, r: 0.005, color: '160,200,255', alpha: 0.35, speed: -0.00003, hasRing: false },
 ];
 
-// ---- Occasional shooting stars & fragments (breaking comets) ----
-const shooters = [];
+// ---- Comets ----
+const shooters  = [];
 const fragments = [];
-let nextShooter = Date.now() + 1000 + Math.random() * 2000;
-
-const COMET_COLORS = [
-  { mid: '168,85,247',  tip: '255,255,255' },  // purple
-  { mid: '6,214,160',   tip: '200,255,240' },  // cyan
-  { mid: '255,200,80',  tip: '255,255,220' },  // gold (rare)
-];
+let nextShooter = Date.now() + 800 + Math.random() * 1500;
 
 function spawnShooter() {
-  const side  = Math.random() < 0.6 ? 'top' : 'right';
-  const angle = (18 + Math.random() * 28) * (Math.PI / 180);
-  const speed = 2.0 + Math.random() * 2.5;
-  const col   = COMET_COLORS[Math.random() < 0.15 ? 2 : Math.random() < 0.5 ? 0 : 1];
+  const side  = Math.random() < 0.65 ? 'top' : 'right';
+  const angle = (15 + Math.random() * 30) * (Math.PI / 180);
+  const speed = 3.5 + Math.random() * 3.0;
   shooters.push({
-    x:     side === 'top' ? Math.random() * spaceCanvas.width : spaceCanvas.width + 10,
-    y:     side === 'top' ? -10 : Math.random() * spaceCanvas.height * 0.6,
-    vx:    side === 'top' ?  Math.cos(angle) * speed :  -Math.cos(angle) * speed,
-    vy:    side === 'top' ?  Math.sin(angle) * speed :   Math.sin(angle) * speed * 0.9,
-    life:  1.0,
-    decay: 0.0015 + Math.random() * 0.002,
-    len:   90 + Math.random() * 120,
-    breaking: Math.random() > 0.35,
-    col,
+    x:        side === 'top' ? Math.random() * spaceCanvas.width : spaceCanvas.width + 10,
+    y:        side === 'top' ? -10 : Math.random() * spaceCanvas.height * 0.5,
+    vx:       side === 'top' ?  Math.cos(angle) * speed :  -Math.cos(angle) * speed,
+    vy:       side === 'top' ?  Math.sin(angle) * speed :   Math.sin(angle) * speed,
+    life:     1.0,
+    decay:    0.008 + Math.random() * 0.006,
+    len:      60 + Math.random() * 100,
+    breaking: Math.random() > 0.25,
   });
 }
 
@@ -132,101 +116,103 @@ let spaceT = 0;
 function drawSpace() {
   const W = spaceCanvas.width, H = spaceCanvas.height;
   sCtxS.clearRect(0, 0, W, H);
+  spaceT += 0.008;
 
-  spaceT += 0.012; // slow down the breathing
-
-  // 1. Very dark, calm space gradient — breathing warm center
-  const breath = Math.sin(spaceT * 0.5) * 0.1; 
-  const grad = sCtxS.createRadialGradient(W * 0.5, H * 0.4, 0, W * 0.5, H * 0.5, Math.max(W, H) * (0.85 + breath));
-  grad.addColorStop(0,   'rgba(14, 7, 30, 1)'); // slightly lighter deep purple center
-  grad.addColorStop(0.6, 'rgba(6, 3, 16, 1)');
-  grad.addColorStop(1,   'rgba(2, 1, 6, 1)'); // pitch black edges
+  // 1. Near-black background — very subtle deep indigo center only
+  const grad = sCtxS.createRadialGradient(W*0.5, H*0.4, 0, W*0.5, H*0.5, Math.max(W,H)*0.9);
+  grad.addColorStop(0,   'rgba(8, 4, 20, 1)');
+  grad.addColorStop(0.5, 'rgba(4, 2, 10, 1)');
+  grad.addColorStop(1,   'rgba(1, 0, 3, 1)');
   sCtxS.fillStyle = grad;
   sCtxS.fillRect(0, 0, W, H);
 
-  // 2. Breathing nebula — slow pulsing vignettes
-  nebulae.forEach(n => {
-    const pulse = Math.sin(spaceT * n.speed * 100 + n.phase) * 0.05;
-    const r     = Math.max(0, (n.r + pulse) * Math.max(W, H));
-    const cx    = n.cx * W;
-    const cy    = n.cy * H;
-    const g     = sCtxS.createRadialGradient(cx, cy, 0, cx, cy, r);
-    g.addColorStop(0,   `rgba(${n.color}, ${n.alpha})`);
-    g.addColorStop(0.5, `rgba(${n.color}, ${n.alpha * 0.3})`);
-    g.addColorStop(1,   `rgba(${n.color}, 0)`);
-    sCtxS.fillStyle = g;
-    sCtxS.fillRect(0, 0, W, H);
-  });
+  // 2. Barely-there nebula — just a faint deep purple haze, no color
+  const neb = sCtxS.createRadialGradient(W*0.45, H*0.5, 0, W*0.45, H*0.5, Math.max(W,H)*0.6);
+  neb.addColorStop(0,   'rgba(60,20,120, 0.04)');
+  neb.addColorStop(0.6, 'rgba(30,10,80,  0.02)');
+  neb.addColorStop(1,   'rgba(0,0,0,     0)');
+  sCtxS.fillStyle = neb;
+  sCtxS.fillRect(0, 0, W, H);
 
-  // 2.5 Subtle Background Planets
+  // 3. Distant planets
   planets.forEach(p => {
     p.cx += p.speed;
-    if (p.cx > 1.2) p.cx = -0.2;
-    if (p.cx < -0.2) p.cx = 1.2;
+    if (p.cx > 1.15) p.cx = -0.15;
+    if (p.cx < -0.15) p.cx = 1.15;
 
     const r  = p.r * Math.max(W, H);
     const cx = p.cx * W;
     const cy = p.cy * H;
 
-    const pg = sCtxS.createRadialGradient(cx - r*0.3, cy - r*0.3, 0, cx, cy, r);
-    pg.addColorStop(0,   `rgba(${p.color}, ${p.alpha * 1.8})`);
-    pg.addColorStop(0.7, `rgba(${p.color}, ${p.alpha * 0.5})`);
-    pg.addColorStop(1,   `rgba(${p.color}, 0)`);
+    // Glow halo
+    const halo = sCtxS.createRadialGradient(cx, cy, 0, cx, cy, r * 3.5);
+    halo.addColorStop(0,   `rgba(${p.color}, ${p.alpha * 0.25})`);
+    halo.addColorStop(1,   `rgba(${p.color}, 0)`);
+    sCtxS.fillStyle = halo;
+    sCtxS.fillRect(cx - r*4, cy - r*4, r*8, r*8);
+
+    // Planet body
+    const pg = sCtxS.createRadialGradient(cx - r*0.3, cy - r*0.35, 0, cx, cy, r);
+    pg.addColorStop(0,   `rgba(${p.color}, ${p.alpha})`);
+    pg.addColorStop(0.6, `rgba(${p.color}, ${p.alpha * 0.6})`);
+    pg.addColorStop(1,   `rgba(${p.color}, 0.05)`);
     sCtxS.beginPath();
     sCtxS.arc(cx, cy, r, 0, Math.PI * 2);
     sCtxS.fillStyle = pg;
-    sCtxS.shadowBlur  = r * 0.8;
-    sCtxS.shadowColor = `rgba(${p.color}, 0.4)`;
+    sCtxS.shadowBlur  = r * 1.5;
+    sCtxS.shadowColor = `rgba(${p.color}, 0.5)`;
     sCtxS.fill();
     sCtxS.shadowBlur = 0;
 
+    // Ring (largest planet only)
     if (p.hasRing) {
       sCtxS.beginPath();
-      sCtxS.ellipse(cx, cy, r * 1.9, r * 0.5, 0.35, 0, Math.PI * 2);
-      sCtxS.strokeStyle = `rgba(${p.color}, ${p.alpha * 0.5})`;
-      sCtxS.lineWidth = r * 0.18;
+      sCtxS.ellipse(cx, cy, r * 2.2, r * 0.45, 0.3, 0, Math.PI * 2);
+      sCtxS.strokeStyle = `rgba(${p.color}, 0.25)`;
+      sCtxS.lineWidth   = r * 0.22;
+      sCtxS.shadowBlur  = r;
+      sCtxS.shadowColor = `rgba(${p.color}, 0.3)`;
       sCtxS.stroke();
+      sCtxS.shadowBlur = 0;
     }
   });
 
-  // 3. Stars — gentle, calm twinkle
+  // 4. Stars
   stars.forEach(s => {
     s.phase += s.speed;
-    const alpha = s.base + Math.sin(s.phase) * (s.base * 0.5);
+    const alpha = s.base + Math.sin(s.phase) * (s.base * 0.4);
+    if (s.r > 1.2) {
+      sCtxS.shadowBlur  = 5;
+      sCtxS.shadowColor = `rgba(210, 220, 255, ${alpha * 0.6})`;
+    }
     sCtxS.beginPath();
     sCtxS.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    // Glow for large stars
-    if (s.r > 0.82) {
-      sCtxS.shadowBlur  = 4;
-      sCtxS.shadowColor = `rgba(200, 185, 255, ${alpha * 0.5})`;
-    }
-    sCtxS.fillStyle = `rgba(215, 205, 255, ${alpha})`;
+    sCtxS.fillStyle = `rgba(220, 225, 255, ${alpha})`;
     sCtxS.fill();
     sCtxS.shadowBlur = 0;
   });
 
-  // 4. Fragments (Breaking Comet Pieces)
+  // 5. Comet fragments
   for (let i = fragments.length - 1; i >= 0; i--) {
     const f = fragments[i];
     f.x += f.vx;
     f.y += f.vy;
     f.life -= f.decay;
     if (f.life <= 0) { fragments.splice(i, 1); continue; }
-
     sCtxS.beginPath();
     sCtxS.arc(f.x, f.y, f.size * Math.max(0, f.life), 0, Math.PI * 2);
-    sCtxS.fillStyle = `rgba(168, 85, 247, ${f.life * 0.8})`;
-    sCtxS.shadowBlur = 4;
+    sCtxS.fillStyle   = `rgba(200, 210, 255, ${f.life * 0.9})`;
+    sCtxS.shadowBlur  = 3;
     sCtxS.shadowColor = `rgba(168, 85, 247, ${f.life})`;
     sCtxS.fill();
     sCtxS.shadowBlur = 0;
   }
 
-  // 5. Calm Comets background
+  // 6. Comets
   const now = Date.now();
   if (now > nextShooter) {
     spawnShooter();
-    nextShooter = now + 4000 + Math.random() * 5000; // Calm, infrequent comets
+    nextShooter = now + 1200 + Math.random() * 2000;
   }
 
   for (let i = shooters.length - 1; i >= 0; i--) {
@@ -234,38 +220,39 @@ function drawSpace() {
     sh.x    += sh.vx;
     sh.y    += sh.vy;
     sh.life -= sh.decay;
-    
     if (sh.life <= 0) { shooters.splice(i, 1); continue; }
 
-    // Sporadic breaking effect
-    if (sh.breaking && sh.life > 0.2 && Math.random() < 0.04) {
-      for (let j = 0; j < Math.random() * 3 + 1; j++) {
+    // Spawn fragments on breaking comets
+    if (sh.breaking && sh.life > 0.15 && Math.random() < 0.07) {
+      const burst = Math.floor(Math.random() * 4) + 2;
+      for (let j = 0; j < burst; j++) {
         fragments.push({
-          x: sh.x, y: sh.y,
-          vx: sh.vx * (0.6 + Math.random() * 0.6) + (Math.random() - 0.5) * 1.5,
-          vy: sh.vy * (0.6 + Math.random() * 0.6) + (Math.random() - 0.5) * 1.5,
-          life: sh.life,
-          decay: 0.01 + Math.random() * 0.02,
-          size: 0.5 + Math.random() * 1.5
+          x:     sh.x,
+          y:     sh.y,
+          vx:    sh.vx * (0.3 + Math.random() * 0.5) + (Math.random() - 0.5) * 2.5,
+          vy:    sh.vy * (0.3 + Math.random() * 0.5) + (Math.random() - 0.5) * 2.5,
+          life:  sh.life * 0.7,
+          decay: 0.015 + Math.random() * 0.025,
+          size:  0.6 + Math.random() * 2.0,
         });
       }
     }
 
-    const speedHypot = Math.hypot(sh.vx, sh.vy);
-    const tailX = sh.x - sh.vx * (sh.len / speedHypot);
-    const tailY = sh.y - sh.vy * (sh.len / speedHypot);
+    const spd  = Math.hypot(sh.vx, sh.vy);
+    const tailX = sh.x - sh.vx * (sh.len / spd);
+    const tailY = sh.y - sh.vy * (sh.len / spd);
     const lg    = sCtxS.createLinearGradient(tailX, tailY, sh.x, sh.y);
-    lg.addColorStop(0,   `rgba(255,255,255,0)`);
-    lg.addColorStop(0.5, `rgba(${sh.col.mid}, ${sh.life * 0.4})`);
-    lg.addColorStop(1,   `rgba(${sh.col.tip}, ${sh.life * 0.9})`);
-    
+    lg.addColorStop(0,   'rgba(255,255,255,0)');
+    lg.addColorStop(0.6, `rgba(180,190,255, ${sh.life * 0.35})`);
+    lg.addColorStop(1,   `rgba(255,255,255, ${sh.life * 0.95})`);
+
     sCtxS.beginPath();
     sCtxS.moveTo(tailX, tailY);
     sCtxS.lineTo(sh.x, sh.y);
     sCtxS.strokeStyle = lg;
-    sCtxS.lineWidth   = sh.life * 1.5; // Thinner, sharper comet
-    sCtxS.shadowBlur  = 10;            // Gentle glow
-    sCtxS.shadowColor = `rgba(${sh.col.mid}, ${sh.life * 0.7})`;
+    sCtxS.lineWidth   = 1.0 + sh.life * 1.5;
+    sCtxS.shadowBlur  = 12;
+    sCtxS.shadowColor = `rgba(168,85,247, ${sh.life * 0.5})`;
     sCtxS.stroke();
     sCtxS.shadowBlur  = 0;
   }
