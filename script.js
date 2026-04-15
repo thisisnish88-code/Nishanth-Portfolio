@@ -59,15 +59,21 @@ resizeSpaceCanvas();
 window.addEventListener('resize', resizeSpaceCanvas);
 
 // ---- Stars — fewer, calmer, very subtle ----
-const STAR_COUNT = 180;
-const stars = Array.from({ length: STAR_COUNT }, () => ({
-  x:     Math.random() * window.innerWidth,
-  y:     Math.random() * window.innerHeight,
-  r:     Math.random() * 0.9 + 0.15,
-  phase: Math.random() * Math.PI * 2,
-  speed: 0.002 + Math.random() * 0.004,   // slow twinkle
-  base:  0.12 + Math.random() * 0.30,     // dim — very calm
-}));
+const STAR_COUNT = 320;
+const stars = Array.from({ length: STAR_COUNT }, () => {
+  const tier = Math.random();
+  const r = tier > 0.95 ? 2.2 + Math.random() * 1.8   // 5% large (distant suns)
+           : tier > 0.80 ? 1.2 + Math.random() * 1.0   // 15% medium
+           :               0.3 + Math.random() * 0.7;   // 80% tiny
+  return {
+    x:     Math.random() * window.innerWidth,
+    y:     Math.random() * window.innerHeight,
+    r,
+    phase: Math.random() * Math.PI * 2,
+    speed: 0.002 + Math.random() * 0.004,
+    base:  r > 1.5 ? 0.45 + Math.random() * 0.35 : 0.12 + Math.random() * 0.25,
+  };
+});
 
 // Reposition stars after resize
 window.addEventListener('resize', () => {
@@ -79,37 +85,45 @@ window.addEventListener('resize', () => {
 
 // ---- Subtle nebula — Deep breathing purple vignettes ----
 const nebulae = [
-  { cx: 0.5, cy: 0.5, r: 0.45, color: '80,30,160',  alpha: 0.03, phase: 0,   speed: 0.0004 },
-  { cx: 0.2, cy: 0.8, r: 0.35, color: '100,40,180', alpha: 0.02, phase: 2.0, speed: 0.0003 },
-  { cx: 0.8, cy: 0.2, r: 0.40, color: '110,50,200', alpha: 0.02, phase: 4.0, speed: 0.0005 },
+  { cx: 0.5,  cy: 0.5,  r: 0.45, color: '80,30,160',   alpha: 0.13, phase: 0,   speed: 0.0004 },
+  { cx: 0.2,  cy: 0.8,  r: 0.35, color: '6,214,160',   alpha: 0.10, phase: 2.0, speed: 0.0003 },
+  { cx: 0.8,  cy: 0.2,  r: 0.40, color: '255,160,60',  alpha: 0.08, phase: 4.0, speed: 0.0005 },
+  { cx: 0.65, cy: 0.6,  r: 0.30, color: '160,30,200',  alpha: 0.09, phase: 1.2, speed: 0.0003 },
 ];
 
 // ---- Environment Planets & Asteroids (Subtle) ----
 const planets = [
-  // Distant subtle gas giant
-  { cx: -0.05, cy: 0.25, r: 0.12, color: '80, 50, 150', alpha: 0.04, speed: 0.00015 },
-  // Tiny distant moon
-  { cx: 0.9, cy: 0.8, r: 0.02, color: '180, 180, 220', alpha: 0.06, speed: -0.00008 },
+  { cx: 0.08,  cy: 0.28, r: 0.055, color: '100,70,200',  alpha: 0.22, speed: 0.00015, hasRing: true  },
+  { cx: 0.88,  cy: 0.75, r: 0.018, color: '200,140,255', alpha: 0.28, speed: -0.0001, hasRing: false },
+  { cx: 0.55,  cy: 0.12, r: 0.010, color: '255,120,100', alpha: 0.20, speed: 0.00006, hasRing: false },
 ];
 
 // ---- Occasional shooting stars & fragments (breaking comets) ----
 const shooters = [];
 const fragments = [];
-let nextShooter = Date.now() + 2000 + Math.random() * 4000;
+let nextShooter = Date.now() + 1000 + Math.random() * 2000;
+
+const COMET_COLORS = [
+  { mid: '168,85,247',  tip: '255,255,255' },  // purple
+  { mid: '6,214,160',   tip: '200,255,240' },  // cyan
+  { mid: '255,200,80',  tip: '255,255,220' },  // gold (rare)
+];
 
 function spawnShooter() {
   const side  = Math.random() < 0.6 ? 'top' : 'right';
-  const angle = (20 + Math.random() * 25) * (Math.PI / 180);
-  const speed = 1.5 + Math.random() * 2.0; // calm comets
+  const angle = (18 + Math.random() * 28) * (Math.PI / 180);
+  const speed = 2.0 + Math.random() * 2.5;
+  const col   = COMET_COLORS[Math.random() < 0.15 ? 2 : Math.random() < 0.5 ? 0 : 1];
   shooters.push({
     x:     side === 'top' ? Math.random() * spaceCanvas.width : spaceCanvas.width + 10,
     y:     side === 'top' ? -10 : Math.random() * spaceCanvas.height * 0.6,
     vx:    side === 'top' ?  Math.cos(angle) * speed :  -Math.cos(angle) * speed,
     vy:    side === 'top' ?  Math.sin(angle) * speed :   Math.sin(angle) * speed * 0.9,
     life:  1.0,
-    decay: 0.002 + Math.random() * 0.002, 
-    len:   80 + Math.random() * 100,
-    breaking: Math.random() > 0.4 // 60% chance to break into pieces
+    decay: 0.0015 + Math.random() * 0.002,
+    len:   90 + Math.random() * 120,
+    breaking: Math.random() > 0.35,
+    col,
   });
 }
 
@@ -150,19 +164,29 @@ function drawSpace() {
     if (p.cx > 1.2) p.cx = -0.2;
     if (p.cx < -0.2) p.cx = 1.2;
 
-    const r = p.r * Math.max(W, H);
+    const r  = p.r * Math.max(W, H);
     const cx = p.cx * W;
     const cy = p.cy * H;
 
     const pg = sCtxS.createRadialGradient(cx - r*0.3, cy - r*0.3, 0, cx, cy, r);
-    pg.addColorStop(0,   `rgba(${p.color}, ${p.alpha * 1.5})`);
-    pg.addColorStop(0.8, `rgba(${p.color}, ${p.alpha * 0.2})`);
+    pg.addColorStop(0,   `rgba(${p.color}, ${p.alpha * 1.8})`);
+    pg.addColorStop(0.7, `rgba(${p.color}, ${p.alpha * 0.5})`);
     pg.addColorStop(1,   `rgba(${p.color}, 0)`);
-
     sCtxS.beginPath();
     sCtxS.arc(cx, cy, r, 0, Math.PI * 2);
     sCtxS.fillStyle = pg;
+    sCtxS.shadowBlur  = r * 0.8;
+    sCtxS.shadowColor = `rgba(${p.color}, 0.4)`;
     sCtxS.fill();
+    sCtxS.shadowBlur = 0;
+
+    if (p.hasRing) {
+      sCtxS.beginPath();
+      sCtxS.ellipse(cx, cy, r * 1.9, r * 0.5, 0.35, 0, Math.PI * 2);
+      sCtxS.strokeStyle = `rgba(${p.color}, ${p.alpha * 0.5})`;
+      sCtxS.lineWidth = r * 0.18;
+      sCtxS.stroke();
+    }
   });
 
   // 3. Stars — gentle, calm twinkle
@@ -232,8 +256,8 @@ function drawSpace() {
     const tailY = sh.y - sh.vy * (sh.len / speedHypot);
     const lg    = sCtxS.createLinearGradient(tailX, tailY, sh.x, sh.y);
     lg.addColorStop(0,   `rgba(255,255,255,0)`);
-    lg.addColorStop(0.5, `rgba(168,85,247, ${sh.life * 0.3})`); // softer glow
-    lg.addColorStop(1,   `rgba(255,255,255, ${sh.life * 0.8})`); 
+    lg.addColorStop(0.5, `rgba(${sh.col.mid}, ${sh.life * 0.4})`);
+    lg.addColorStop(1,   `rgba(${sh.col.tip}, ${sh.life * 0.9})`);
     
     sCtxS.beginPath();
     sCtxS.moveTo(tailX, tailY);
@@ -241,7 +265,7 @@ function drawSpace() {
     sCtxS.strokeStyle = lg;
     sCtxS.lineWidth   = sh.life * 1.5; // Thinner, sharper comet
     sCtxS.shadowBlur  = 10;            // Gentle glow
-    sCtxS.shadowColor = `rgba(168, 85, 247, ${sh.life * 0.6})`;
+    sCtxS.shadowColor = `rgba(${sh.col.mid}, ${sh.life * 0.7})`;
     sCtxS.stroke();
     sCtxS.shadowBlur  = 0;
   }
