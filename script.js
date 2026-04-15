@@ -448,6 +448,36 @@ async function runHeroBoot() {
   const bootInit = document.getElementById('boot-init');
   if (!bootInit) return;
 
+  if (localStorage.getItem('visited')) {
+    // Fast forward everything
+    bootInit.classList.add('show');
+    
+    const bootLoc = document.getElementById('boot-loc');
+    bootLoc.textContent = '> LOCATION: BENGALURU, INDIA';
+    bootLoc.classList.add('show');
+    
+    const bootStatus = document.getElementById('boot-status');
+    bootStatus.textContent = '> STATUS: EMBEDDED SYSTEMS & ROBOTICS ENGINEER';
+    bootStatus.classList.add('show');
+    
+    const nameEl = document.getElementById('hero-name');
+    nameEl.textContent = NAME;
+    nameEl.style.opacity = '1';
+    
+    const taglineEl = document.getElementById('hero-tagline');
+    if (taglineEl) {
+      taglineEl.textContent = '"I build the hardware. I write the firmware. I ship the robot."';
+      taglineEl.classList.add('visible');
+    }
+    
+    document.getElementById('hero-ctas').classList.add('visible');
+    document.getElementById('hero-location').classList.add('visible');
+    document.getElementById('hero-visual').classList.add('visible');
+    return;
+  }
+
+  localStorage.setItem('visited', 'true');
+
   // Quick screen flicker on load
   document.body.style.opacity = '0.25';
   await new Promise(r => setTimeout(r, 60));
