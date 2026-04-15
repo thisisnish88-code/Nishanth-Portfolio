@@ -303,7 +303,7 @@ function buildOscPath(time, amplitude, frequency, phase, type) {
 const navbar   = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-links a[data-section]');
 const navIndicator = document.getElementById('nav-indicator');
-const sections = ['about','experience','projects','skills','contact'];
+const sections = ['about','experience','beyond','projects','skills','contact'];
 
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 40);
