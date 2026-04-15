@@ -452,35 +452,7 @@ async function runHeroBoot() {
   const bootInit = document.getElementById('boot-init');
   if (!bootInit) return;
 
-  if (localStorage.getItem('visited')) {
-    // Fast forward everything
-    bootInit.classList.add('show');
-    
-    const bootLoc = document.getElementById('boot-loc');
-    bootLoc.textContent = '> LOCATION: BENGALURU, INDIA';
-    bootLoc.classList.add('show');
-    
-    const bootStatus = document.getElementById('boot-status');
-    bootStatus.textContent = '> STATUS: EMBEDDED SYSTEMS & ROBOTICS ENGINEER';
-    bootStatus.classList.add('show');
-    
-    const nameEl = document.getElementById('hero-name');
-    nameEl.textContent = NAME;
-    nameEl.style.opacity = '1';
-    
-    const taglineEl = document.getElementById('hero-tagline');
-    if (taglineEl) {
-      taglineEl.textContent = 'I build the hardware. I write the firmware. I ship the robot.';
-      taglineEl.classList.add('visible');
-    }
-    
-    document.getElementById('hero-ctas').classList.add('visible');
-    document.getElementById('hero-location').classList.add('visible');
-    document.getElementById('hero-visual').classList.add('visible');
-    return;
-  }
 
-  localStorage.setItem('visited', 'true');
 
   // Quick screen flicker on load
   document.body.style.opacity = '0.25';
@@ -981,11 +953,14 @@ projectCards.forEach(card => {
       parasEl.className = 'modal-paragraphs';
 
       let challengeText = null;
+      let disclaimerText = null;
 
       for (let i = 1; i < sections.length; i++) {
         const block = sections[i].trim();
         if (block.toUpperCase().startsWith('KEY CHALLENGE:')) {
           challengeText = block.replace(/^KEY CHALLENGE:\s*/i, '').trim();
+        } else if (block.toUpperCase().startsWith('DISCLAIMER:')) {
+          disclaimerText = block.replace(/^DISCLAIMER:\s*/i, '').trim();
         } else {
           const p = document.createElement('p');
           p.textContent = block;
@@ -1006,6 +981,17 @@ projectCards.forEach(card => {
         challengeEl.appendChild(label);
         challengeEl.appendChild(cp);
         modalDesc.appendChild(challengeEl);
+      }
+
+      if (disclaimerText) {
+        const discEl = document.createElement('div');
+        discEl.className = 'modal-disclaimer';
+        discEl.style.fontSize = '0.85em';
+        discEl.style.color = 'var(--text-muted)';
+        discEl.style.marginTop = '1.5rem';
+        discEl.style.lineHeight = '1.5';
+        discEl.innerHTML = disclaimerText.replace(/\n/g, '<br/>');
+        modalDesc.appendChild(discEl);
       }
     } else {
       const blocks = raw.split(/\n\n+/).filter(Boolean);

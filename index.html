@@ -364,12 +364,15 @@ The system is deeply integrated with Compass, an internal R&D OS I built to cent
 
 The mechanical assembly underwent exhaustive iteration, with every 3D-printed component and structural bracket tested to failure and redesigned until it could survive real-world deployment. The result is a robust, autonomous platform capable of managing the unpredictable physical variables of modern building facades.
 
-KEY CHALLENGE: Achieving deterministic wireless communication on 20-meter structures where signal behavior is highly unpredictable. Integrating LoRa as the communication backbone solved the reliability issues of previous iterations, ensuring zero-latency control where any signal failure has immediate physical consequences."
+KEY CHALLENGE: Achieving deterministic wireless communication on 20-meter structures where signal behavior is highly unpredictable. Integrating LoRa as the communication backbone solved the reliability issues of previous iterations, ensuring zero-latency control where any signal failure has immediate physical consequences.
+
+DISCLAIMER: Images are AI-generated references — actual build cannot be shown publicly as it is proprietary to Fubotics. Real footage and photos available on request."
           data-tech="ESP32, LoRa, ESP-NOW, Embedded C, MQTT, Mosquitto, AWS, Flask, Razorpay, Compass Integration, REST API">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/facade-v2/V2.png" alt="Facade Cleaning Robot V2" loading="lazy" />
             <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="ai-ref-badge">🔒 AI Reference — Actual build proprietary</div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
@@ -416,7 +419,7 @@ KEY CHALLENGE: Achieving repeatable vertical motion across 18 independent axes s
 
 Neuron was architected to solve the fragmentation of modern digital life by centralizing your entire cognitive workflow into three interconnected pillars within a single brain. Cortex serves as the ingestion engine, utilizing pgvector to embed and retrieve everything from research papers to voice notes. Locus provides context-aware task management, while Pulse acts as a living journal of personal growth and energy levels.
 
-The infrastructure is powered by a multi-model AI routing layer via OpenRouter, orchestrated by n8n automation pipelines. All data is securely stored and vectorized in Supabase, providing sub-millisecond semantic search capabilities. This ensures that a query about a topic from three months ago yields direct answers from YOUR saved knowledge, not generic web results.
+The infrastructure is powered by a multi-model AI routing layer via OpenRouter, orchestrated by n8n automation pipelines. All data is securely stored and vectorized in Supabase, enabling fast semantic search over your personal knowledge base. This ensures that a query about a topic from three months ago yields direct answers from YOUR saved knowledge, not generic web results.
 
 The system is built in React and deployed on Cloudflare Pages, currently operating in gated beta. By combining RAG pipelines with deep contextual awareness, Neuron transforms from a passive storage tool into an active personal assistant that understands how your saved insights and daily actions relate to one another over time.
 
@@ -614,6 +617,9 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <div class="pcb-node node-hw" data-id="arduino_fw" data-cat="Embedded &amp; Hardware" style="left: 5%; top: 33.33%">Arduino Framework</div>
             <div class="pcb-node node-hw" data-id="sensor" data-cat="Embedded &amp; Hardware" style="left: 5%; top: 16.66%">Sensor Fusion</div>
             <div class="pcb-node node-hw" data-id="motor_tune" data-cat="Embedded &amp; Hardware" style="left: 20%; top: 10%">Motor Tuning</div>
+            <div class="pcb-node node-hw" data-id="oscilloscope" data-cat="Embedded &amp; Hardware" style="left: 45%; top: 25%">Oscilloscope</div>
+            <div class="pcb-node node-hw" data-id="logic_analyzer" data-cat="Embedded &amp; Hardware" style="left: 48%; top: 35%">Logic Analyzer</div>
+            <div class="pcb-node node-hw" data-id="jtag_swd" data-cat="Embedded &amp; Hardware" style="left: 42%; top: 30%">JTAG/SWD</div>
             
             <!-- Mechanical -->
             <div class="pcb-node primary node-mech" data-id="onshape" data-cat="Mechanical Design" style="left: 75%; top: 25%">Onshape</div>
@@ -640,6 +646,7 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <div class="pcb-node node-sw" data-id="vecsearch" data-cat="Software &amp; Backend" style="left: 20%; top: 85%">Vector Search</div>
 
             <!-- AI -->
+            <div class="pcb-node primary node-ai" data-id="n8n" data-cat="AI &amp; Tooling" style="left: 75%; top: 60%">n8n Workflows</div>
             <div class="pcb-node primary node-ai" data-id="rag" data-cat="AI &amp; Tooling" style="left: 70%; top: 66.66%">RAG Systems</div>
             <div class="pcb-node primary node-ai" data-id="langgraph" data-cat="AI &amp; Tooling" style="left: 85%; top: 75%">LangGraph</div>
             <div class="pcb-node primary node-ai" data-id="openrouter" data-cat="AI &amp; Tooling" style="left: 78%; top: 85%">OpenRouter</div>
@@ -678,6 +685,9 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <span class="skill-tag-m">Sensor Fusion</span>
             <span class="skill-tag-m">Motor Tuning</span>
             <span class="skill-tag-m">Interrupt Handling</span>
+            <span class="skill-tag-m">Oscilloscope</span>
+            <span class="skill-tag-m">Logic Analyzer</span>
+            <span class="skill-tag-m">JTAG/SWD</span>
           </div>
         </div>
 
@@ -717,6 +727,7 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
         <div class="skill-card-m ai">
           <div class="skill-card-m-label">// AI & Tooling</div>
           <div class="skill-tags-m">
+            <span class="skill-tag-m primary">n8n Workflows</span>
             <span class="skill-tag-m primary">RAG Systems</span>
             <span class="skill-tag-m primary">LangGraph</span>
             <span class="skill-tag-m primary">OpenRouter</span>

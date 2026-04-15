@@ -59,7 +59,6 @@
         <button class="filter-btn active" data-filter="all">ALL</button>
         <button class="filter-btn" data-filter="hardware">HARDWARE</button>
         <button class="filter-btn" data-filter="software">SOFTWARE</button>
-        <button class="filter-btn" data-filter="ai">AI</button>
       </div>
 
       <div class="projects-grid" id="projects-grid">
@@ -73,12 +72,15 @@ The console acts as a centralized command hub, housing joystick interfaces and l
 
 Unlike laboratory prototypes, multiple units of this architecture were deployed commercially in production facilities. The focus was on noise rejection and high-EMI resistance, ensuring that every operational deployment remained synchronized and stable under industrial loads.
 
-KEY CHALLENGE: Transmitting reliable video and control signals simultaneously through a single tether in electrically noisy industrial environments. Selecting RS485 for its noise-rejection properties and specialized video baluns for signal conversion was critical to maintaining a persistent feed in harsh EMI conditions."
+KEY CHALLENGE: Transmitting reliable video and control signals simultaneously through a single tether in electrically noisy industrial environments. Selecting RS485 for its noise-rejection properties and specialized video baluns for signal conversion was critical to maintaining a persistent feed in harsh EMI conditions.
+
+DISCLAIMER: Images are AI-generated references — actual build cannot be shown publicly as it is proprietary to Fubotics. Real footage and photos available on request."
           data-tech="RS485, RJ45, Video Balun, Analog Camera, Cable Tether, L298N, Joystick Console, Embedded C, Motor Control Systems">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/duct-robot/D1.png" alt="Industrial Duct Cleaning Robot" loading="lazy" />
             <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="ai-ref-badge">🔒 AI Reference — Actual build proprietary</div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
@@ -102,12 +104,15 @@ The software architecture was built for real-world deployment, utilizing an ESP3
 
 This version wasn't about refined polish; it was about exposing every engineering assumption that needed to fail before V2 could exist. Every component—from brush mounting geometry to communication protocols—was prototyped, tested, and redesigned based on real failure modes encountered during facade deployment.
 
-KEY CHALLENGE: Establishing a reliable real-time communication pipeline between an outdoor robot and a cloud backend under unpredictable environmental conditions. Field tests exposed unique failure modes that never appeared during bench testing, necessitating a pivot to LoRa to ensure deterministic control."
+KEY CHALLENGE: Establishing a reliable real-time communication pipeline between an outdoor robot and a cloud backend under unpredictable environmental conditions. Field tests exposed unique failure modes that never appeared during bench testing, necessitating a pivot to LoRa to ensure deterministic control.
+
+DISCLAIMER: Images are AI-generated references — actual build cannot be shown publicly as it is proprietary to Fubotics. Real footage and photos available on request."
           data-tech="ESP32, LoRa, BLDC Motors, ESCs, SMPS, MQTT/Mosquitto, AWS, ThingsBoard, Ubidots, Flask, Embedded C, 3D Printed Prototypes">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/facade-v1/V1.png" alt="Facade Cleaning Robot V1" loading="lazy" />
             <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="ai-ref-badge">🔒 AI Reference — Actual build proprietary</div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
@@ -131,12 +136,15 @@ The prototype was fully built and validated, with the complete technology packag
 
 Due to the nature of the development at Fubotics, specific technical details of the reorganized mechanism remain proprietary. However, the system maintains the robust communication backbone of its predecessors, utilizing ESP32, LoRa, and ESP-NOW within a cloud-synchronised AWS architecture.
 
-KEY CHALLENGE: Rethinking the core architecture from scratch to eliminate operational complexity without compromising performance. The central constraint was commercial scalability: reducing the footprint and setup time to ensure the system remained viable for large-scale, multi-team deployments."
+KEY CHALLENGE: Rethinking the core architecture from scratch to eliminate operational complexity without compromising performance. The central constraint was commercial scalability: reducing the footprint and setup time to ensure the system remained viable for large-scale, multi-team deployments.
+
+DISCLAIMER: Images are AI-generated references — actual build cannot be shown publicly as it is proprietary to Fubotics. Real footage and photos available on request."
           data-tech="ESP32, LoRa, ESP-NOW, Embedded C, Motor Control Systems, MQTT, AWS">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/facade-v3/V3.png" alt="Facade Cleaning Robot V3" loading="lazy" />
             <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="ai-ref-badge">🔒 AI Reference — Actual build proprietary</div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
@@ -259,7 +267,7 @@ KEY CHALLENGE: Translating fluctuating computer vision output into reliable, rep
         </div>
 
         <!-- 8. ESPCam Coin Counter -->
-        <div class="project-card" data-cat="ai" data-name="ESPCam Coin Counter" data-media-type="photos" data-media='["assets/espcam/ESPCam1.jfif","assets/espcam/ESPcam2.jfif"]'
+        <div class="project-card" data-cat="software" data-name="ESPCam Coin Counter" data-media-type="photos" data-media='["assets/espcam/ESPCam1.jfif","assets/espcam/ESPcam2.jfif"]'
           data-desc="HOOK: Real-time, camera-based coin sortation achieved through classical computer vision pipelines—no heavy ML models, just pure edge detection logic.
 
 The architecture comprises an ESP32-CAM streaming live MJPEG telemetry over WiFi to a local Python environment. Utilizing OpenCV, the signal is processed through a deterministic CV pipeline: noise reduction via Gaussian blur, grayscale conversion, and Canny edge detection to isolate precise object boundaries.
@@ -276,7 +284,7 @@ KEY CHALLENGE: Eliminating false edges caused by specular highlights on reflecti
             <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
           </div>
           <div class="project-body">
-            <div class="project-category ai">CV / AI</div>
+            <div class="project-category software">SOFTWARE</div>
             <div class="project-name">CV Coin Counter</div>
             <div class="project-desc">Pure computer vision pipeline utilizing MJPEG streaming from ESP32-CAM to classify and count coin denominations via Canny/Contour analysis.</div>
             <div class="project-tags">
@@ -316,26 +324,7 @@ KEY CHALLENGE: Engineering a RAG system capable of high-accuracy retrieval acros
           </div>
         </div>
 
-        <!-- 10. Marketing Agent -->
-        <div class="project-card" data-cat="ai" data-name="Marketing Agent" data-media-type="photos" data-media="[]"
-          data-desc="Multi-agent marketing automation system for Fubotics. LangGraph orchestrates a CrewAI crew that researches, writes, and publishes content across platforms. Human-in-the-loop (HITL) approval via a Telegram bot before anything goes live. Supports multi-platform scheduling."
-          data-tech="LangGraph,CrewAI,LangChain,Telegram Bot,HITL,Python,OpenRouter">
-          <div class="project-light"></div>
-          <div class="project-thumb">
-            <img class="project-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="Fubotics Marketing Agent" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
-          </div>
-          <div class="project-body">
-            <div class="project-category ai">AI</div>
-            <div class="project-name">Fubotics Marketing Agent</div>
-            <div class="project-desc">LangGraph + CrewAI multi-agent system. HITL Telegram approval. Multi-platform publishing.</div>
-            <div class="project-tags">
-              <span class="project-tag">LangGraph</span>
-              <span class="project-tag">CrewAI</span>
-              <span class="project-tag">HITL</span>
-            </div>
-          </div>
-        </div>
+
 
         <!-- 11. Alcohol Detection & Engine Lock Car -->
         <div class="project-card" data-cat="hardware" data-name="Alcohol Detection & Engine Lock Car" data-media-type="photos" data-media='["assets/alcohol-car/AD1.jfif","assets/alcohol-car/AD2.jfif","assets/alcohol-car/AD3.jfif","assets/alcohol-car/AD4.jfif","assets/alcohol-car/AD5.jfif"]'
@@ -536,6 +525,27 @@ KEY CHALLENGE: Routing disparate audio sources into a single, capturable stream 
               <span class="project-tag">Virtual Audio</span>
               <span class="project-tag">FFT</span>
               <span class="project-tag">FastLED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Marketing Agent -->
+        <div class="project-card" data-cat="software" data-name="Marketing Agent" data-media-type="photos" data-media="[]"
+          data-desc="Multi-agent marketing automation system for Fubotics. LangGraph orchestrates a CrewAI crew that researches, writes, and publishes content across platforms. Human-in-the-loop (HITL) approval via a Telegram bot before anything goes live. Supports multi-platform scheduling."
+          data-tech="LangGraph,CrewAI,LangChain,Telegram Bot,HITL,Python,OpenRouter">
+          <div class="project-light"></div>
+          <div class="project-thumb">
+            <img class="project-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="Fubotics Marketing Agent" loading="lazy" />
+            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+          </div>
+          <div class="project-body">
+            <div class="project-category software">SOFTWARE</div>
+            <div class="project-name">Fubotics Marketing Agent</div>
+            <div class="project-desc">LangGraph + CrewAI multi-agent system. HITL Telegram approval. Multi-platform publishing.</div>
+            <div class="project-tags">
+              <span class="project-tag">LangGraph</span>
+              <span class="project-tag">CrewAI</span>
+              <span class="project-tag">HITL</span>
             </div>
           </div>
         </div>
