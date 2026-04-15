@@ -111,28 +111,7 @@
             </div>
           </div>
 
-          <div style="margin-top:1rem;border:1px solid var(--border);border-radius:var(--radius);padding:0.85rem 1rem;background:var(--surface);display:flex;align-items:center;gap:1rem;">
-            <svg class="robot-svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <rect x="14" y="18" width="20" height="16" rx="3" stroke="#7c3aed" stroke-width="1.5"/>
-              <rect x="18" y="10" width="12" height="8" rx="2" stroke="#7c3aed" stroke-width="1.5"/>
-              <line x1="24" y1="18" x2="24" y2="10" stroke="#7c3aed" stroke-width="1.5"/>
-              <circle cx="21" cy="23" r="2" fill="#a855f7" opacity="0.8"/>
-              <circle cx="27" cy="23" r="2" fill="#a855f7" opacity="0.8"/>
-              <rect x="20" y="27" width="8" height="2" rx="1" fill="#a855f7" opacity="0.5"/>
-              <line x1="8" y1="22" x2="14" y2="22" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="8" y1="28" x2="14" y2="28" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="34" y1="22" x2="40" y2="22" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="34" y1="28" x2="40" y2="28" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
-              <rect x="17" y="34" width="5" height="8" rx="2" stroke="#7c3aed" stroke-width="1.5"/>
-              <rect x="26" y="34" width="5" height="8" rx="2" stroke="#7c3aed" stroke-width="1.5"/>
-              <circle cx="16" cy="14" r="1.5" fill="#06d6a0" opacity="0.8"/>
-              <circle cx="32" cy="14" r="1.5" fill="#06d6a0" opacity="0.8"/>
-            </svg>
-            <div>
-              <div style="font-family:var(--mono);font-size:0.7rem;color:var(--glow);">FUBOTICS — FACADE BOT V2</div>
-              <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);margin-top:0.2rem;">SYSTEM OK &nbsp;|&nbsp; LAST DEPLOY: 20m BUILDING</div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -147,7 +126,7 @@
           <p class="about-bio">
             I'm an Embedded Systems &amp; Robotics Engineer who started building at age <strong>10</strong> with syringes and cardboard. Today I build <strong>facade-cleaning robots</strong>, design <strong>IoT backends</strong>, and ship <strong>AI systems</strong> — often all at once.<br/><br/>
             I've been the sole technical person at an early-stage robotics startup, where I owned hardware, firmware, mechanical design, and software <em>end to end</em>. I've tested robots on the sides of buildings, hand-soldered drivers at 2AM, and debugged LoRa interference under a 3-phase motor system 15 days before deployment.<br/><br/>
-            I don't just build components. <strong>I build systems.</strong><br/><br/>For the first year at Fubotics, if the hardware didn't work, there was no one else.
+            For the first year at Fubotics, if the hardware didn't work, there was no one else.
           </p>
           <p class="about-bio-subtitle">// 20+ projects. Only a few explosions.</p>
         </div>
@@ -356,17 +335,17 @@
       <div class="projects-grid" id="projects-grid">
 
         <div class="project-card" data-cat="hardware" data-name="Facade Cleaning Robot V2" data-media-type="photos" data-media='["assets/facade-v2/V2.png"]'
-          data-desc="HOOK: Production-ready and field-deployed on 20-meter facades—a ground-up redesign engineered for reliability in commercial environments.
+          data-desc="Production-grade facade cleaning robot, field-tested on a 20-metre building facade.
 
-V2 represents the transition from proof-of-concept to a deployable industrial system. I owned the complete technical stack—electronics, firmware, and backend. The communication architecture was overhauled with a dual LoRa and ESP-NOW stack, ensuring long-range stability and low-latency peer-to-peer control in outdoor environments where standard protocols often fail.
+V2 was a full system redesign — not an iteration. The dual LoRa and ESP-NOW communication stack replaced earlier protocols after field testing exposed reliability limits that bench environments never revealed. The backend moved to a proper commercial architecture: AWS-hosted Mosquitto broker, Flask API, and Razorpay integration for credit-based usage billing — turning a hardware product into a billable service platform.
 
-The system is deeply integrated with Compass, an internal R&D OS I built to centralize operational telemetry. An AWS-hosted backend utilizing a Mosquitto MQTT broker and Flask API processes live robot data, while a Razorpay integration manages credit-based usage billing. This creates a full-circle lifecycle from physical actuation to commercial administration.
+Every mechanical component was tested to failure and rebuilt. The full system — electronics, firmware, IoT backend, and production SOPs — was brought to a state where it could be handed to a manufacturing partner and scaled without the original builder in the loop.
 
-The mechanical assembly underwent exhaustive iteration, with every 3D-printed component and structural bracket tested to failure and redesigned until it could survive real-world deployment. The result is a robust, autonomous platform capable of managing the unpredictable physical variables of modern building facades.
+That's the finish line for this kind of engineering work. Building something good enough that it runs without you.
 
-KEY CHALLENGE: Achieving deterministic wireless communication on 20-meter structures where signal behavior is highly unpredictable. Integrating LoRa as the communication backbone solved the reliability issues of previous iterations, ensuring zero-latency control where any signal failure has immediate physical consequences.
+Key challenge: 3-phase motor interference was blocking LoRa 15 days before deployment. Diagnosed the source, built a custom LoRa-to-WiFi bridge as a workaround, shipped on time.
 
-DISCLAIMER: Images are AI-generated references — actual build cannot be shown publicly as it is proprietary to Fubotics. Real footage and photos available on request."
+Actual build is proprietary to Fubotics. Images are reference renders. Real footage available on request."
           data-tech="ESP32, LoRa, ESP-NOW, Embedded C, MQTT, Mosquitto, AWS, Flask, Razorpay, Compass Integration, REST API">
           <div class="project-light"></div>
           <div class="project-thumb">
@@ -387,7 +366,7 @@ DISCLAIMER: Images are AI-generated references — actual build cannot be shown 
         </div>
 
         <div class="project-card" data-cat="hardware" data-name="Kinetic Rain Installation" data-media-type="photos" data-media='["assets/kinetic-rain/P1.jfif","assets/kinetic-rain/P2.jfif","assets/kinetic-rain/P3.jfif"]'
-          data-desc="HOOK: 18 independently controlled kinetic spheres choreographed into synchronized, high-precision wave patterns.
+          data-desc="18 independently controlled kinetic spheres choreographed into synchronized, high-precision wave patterns.
 
 Built to mimic the fluid organic motion of modern museum art pieces, this installation utilizes custom-weighted spheres and high-precision motor control to create complex vertical wave sequences. The architecture runs two Arduino Megas in a UART master-slave configuration, with the master handling timing while the slave distributes step/direction signals.
 
@@ -415,7 +394,7 @@ KEY CHALLENGE: Achieving repeatable vertical motion across 18 independent axes s
         </div>
 
         <div class="project-card" data-cat="software" data-name="Neuron — Personal AI OS" data-media-type="photos" data-media='["assets/neuron/Screenshot 2026-04-14 173212.png","assets/neuron/Screenshot 2026-04-14 173233.png","assets/neuron/Screenshot 2026-04-14 173643.png","assets/neuron/Screenshot 2026-04-14 173748.png","assets/neuron/Screenshot 2026-04-14 173757.png","assets/neuron/Screenshot 2026-04-14 173923.png","assets/neuron/Screenshot 2026-04-14 173933.png","assets/neuron/Screenshot 2026-04-14 173950.png","assets/neuron/Screenshot 2026-04-14 174000.png"]'
-          data-desc="HOOK: A unified cognitive operating system that bridges the gap between task management, content ingestion, and personal reflection.
+          data-desc="A unified cognitive operating system that bridges the gap between task management, content ingestion, and personal reflection.
 
 Neuron was architected to solve the fragmentation of modern digital life by centralizing your entire cognitive workflow into three interconnected pillars within a single brain. Cortex serves as the ingestion engine, utilizing pgvector to embed and retrieve everything from research papers to voice notes. Locus provides context-aware task management, while Pulse acts as a living journal of personal growth and energy levels.
 
@@ -443,7 +422,7 @@ KEY CHALLENGE: Building a retrieval system that transcends basic semantic accura
         </div>
 
         <div class="project-card" data-cat="hardware" data-name="AI Voice Pendant" data-media-type="photos" data-media='["assets/ai-pendant/AI pendent 1.jpg","assets/ai-pendant/AI pendent 2.jpg"]'
-          data-desc="HOOK: A wearable, frictionless hardware interface for the Neuron OS—designed to capture spoken thoughts and ideas without ever pulling out a phone.
+          data-desc="A wearable, frictionless hardware interface for the Neuron OS—designed to capture spoken thoughts and ideas without ever pulling out a phone.
 
 The AI Voice Pendant is a minimal, palm-held device optimized for zero-friction interaction. Utilizing a Seeed Studio XIAO ESP32-S3 and an I2S MEMS microphone, the system records voice memos, encodes them as high-fidelity WAV files, and transmits them over WiFi for real-time transcription. An AI classification layer then instantly categorizes each entry as a task, idea, or reminder within the Neuron database.
 
@@ -471,15 +450,15 @@ KEY CHALLENGE: Minimizing the physical footprint of a complete embedded system w
         </div>
 
         <div class="project-card" data-cat="hardware" data-name="BLE Gamepad — Steering Wheel + Pedals" data-media-type="video" data-media='["https://streamable.com/wv1odt"]'
-          data-desc="HOOK: A custom-built, driverless steering system that Windows recognizes as a native Bluetooth HID gamepad—ready for plug-and-play racing.
+          data-desc="A custom-built, driverless steering system that Windows recognizes as a native Bluetooth HID gamepad—ready for plug-and-play racing.
 
 Designed and 3D printed from the ground up, this rig features a full steering wheel and pedal assembly that houses an ESP32 presenting as a standard BLE Gamepad. Every input—from steering torque to accelerator, brake, and gear shifters—is mapped directly to Windows HID axes and buttons, requiring zero external software for native game recognition.
 
-The engineering challenge was a documented but silently-crashing hardware limitation of the ESP32: the conflict between the Bluetooth radio and ADC2 channels. When the BT radio is active, analog reads on ADC2 fail completely. I diagnosed the root cause, remapped all critical steering and throttle inputs to ADC1, and recalibrated the full analog range for precise, drift-free resolution.
+The engineering challenge was a documented but silently-crashing hardware limitation of the ESP32: the conflict between the Bluetooth radio and ADC2 channels. When the BT radio is active, analog reads on ADC2 fail completely. Root cause diagnosed — all critical steering and throttle inputs remapped to ADC1, full analog range recalibrated for precise, drift-free resolution.
 
-This build wasn't just a prototype; it was engineered for daily use. By overcoming Windows BLE pairing cache issues and hardware-level signal interference, I created a robust peripheral that maintains a permanent, stable link with modern racing sims.
+This build wasn't just a prototype; it was engineered for daily use. The result is a robust peripheral that maintains a permanent, stable link with modern racing sims — Windows BLE pairing cache issues and hardware-level signal interference both resolved.
 
-KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Bluetooth conflict. With no clear documentation pointing to the silent analog failure, I had to identify the interference pattern, migrate the architectural mapping to ADC1, and implement a full cache-flush procedure for Windows BLE HID descriptors."
+KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Bluetooth conflict. With no clear documentation pointing to the silent analog failure, the interference pattern had to be identified from scratch — architectural mapping migrated to ADC1, full cache-flush procedure implemented for Windows BLE HID descriptors."
           data-tech="ESP32, BLE HID, BLEGamepad Library, ADC1 Remapping, 3D Printed Frame, Steering Wheel, Pedals, Gear Shifter, Windows HID">
           <div class="project-light"></div>
           <div class="project-thumb">
@@ -774,10 +753,10 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
                 <span class="contact-row-key">EMAIL</span>
                 <span class="contact-row-val">thisisnish88@gmail.com</span>
               </a>
-              <a href="https://linkedin.com/in/nishanth-k-b0b0b2250" target="_blank" class="contact-row">
+              <a href="https://linkedin.com/in/nishanth-k88" target="_blank" class="contact-row">
                 <span class="contact-prompt">&gt;</span>
                 <span class="contact-row-key">LINKEDIN</span>
-                <span class="contact-row-val">linkedin.com/in/nishanth-k</span>
+                <span class="contact-row-val">linkedin.com/in/nishanth-k88</span>
               </a>
               <a href="https://github.com/thisisnish88-code" target="_blank" class="contact-row">
                 <span class="contact-prompt">&gt;</span>
@@ -808,7 +787,7 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
     </div>
     <div class="footer-socials">
       <a href="https://github.com/thisisnish88-code" target="_blank">↗ GitHub</a>
-      <a href="https://linkedin.com/in/nishanth-k-b0b0b2250" target="_blank">↗ LinkedIn</a>
+      <a href="https://linkedin.com/in/nishanth-k88" target="_blank">↗ LinkedIn</a>
       <a href="https://app-heyneuron.pages.dev" target="_blank">↗ Neuron</a>
     </div>
   </footer>

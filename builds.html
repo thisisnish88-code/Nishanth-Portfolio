@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>All Builds — Nishanth K</title>
-  <meta name="description" content="Portfolio of Nishanth K — Embedded Systems &amp; Robotics Engineer based in Bengaluru. I build the hardware. I write the firmware. I ship the robot." />
-  <meta name="keywords" content="embedded systems, robotics engineer, ESP32, Arduino, IoT, firmware, PCB design, Bengaluru" />
+  <meta name="description"
+    content="Portfolio of Nishanth K — Embedded Systems &amp; Robotics Engineer based in Bengaluru. I build the hardware. I write the firmware. I ship the robot." />
+  <meta name="keywords"
+    content="embedded systems, robotics engineer, ESP32, Arduino, IoT, firmware, PCB design, Bengaluru" />
   <meta property="og:title" content="All Builds — Nishanth K" />
-  <meta property="og:description" content="Everything I've built. Some worked. Some exploded. All taught me something." />
+  <meta property="og:description"
+    content="Everything I've built. Some worked. Some exploded. All taught me something." />
   <meta property="og:type" content="website" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23060010'/><text y='24' x='4' font-size='22' fill='%237c3aed' font-family='monospace' font-weight='bold'>N</text></svg>" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23060010'/><text y='24' x='4' font-size='22' fill='%237c3aed' font-family='monospace' font-weight='bold'>N</text></svg>" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="media.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
   <!-- ====== CUSTOM CURSOR ====== -->
@@ -53,7 +61,8 @@
   <section id="builds" style="padding-top: 150px; min-height: 80vh;">
     <div class="container">
       <div class="section-label reveal" data-type-label="// ALL BUILDS"></div>
-      <h2 class="section-title reveal delay-1" style="margin-bottom: 2rem;">Everything I've built. Some worked. Some exploded. All taught me something.</h2>
+      <h2 class="section-title reveal delay-1" style="margin-bottom: 2rem;">Everything I've built. Some worked. Some
+        exploded. All taught me something.</h2>
 
       <div class="project-filters reveal delay-1" id="filter-bar">
         <button class="filter-btn active" data-filter="all">ALL</button>
@@ -63,29 +72,31 @@
 
       <div class="projects-grid" id="projects-grid">
         <!-- 1. Duct Cleaning Robot -->
-        <div class="project-card" data-cat="hardware" data-name="Duct Cleaning Robot" data-media-type="photos" data-media='["assets/duct-robot/D1.png"]'
-          data-desc="HOOK: A robust, cable-tethered system engineered for high-consequence environments where wireless communication is biologically and physically impossible.
+        <div class="project-card" data-cat="hardware" data-name="Duct Cleaning Robot" data-media-type="photos"
+          data-media='["assets/duct-robot/D1.png"]' data-desc="Industrial inspection and cleaning robot built for environments where wireless is not an option.
 
-Built for actual commercial deployment in industrial HVAC and pipeline systems, this robot utilizes a dedicated cable tether for simultaneous power and persistent data transmission. A specialized video balun handles the high-fidelity conversion of analog camera feeds, transmitting live inspection telemetry directly to an integrated operator console.
+Cable-tethered architecture for simultaneous power and data — a single tether carrying RS485 control signals and analog camera feed via video balun. The operator console housed joystick interfaces and live monitors in a single ruggedized unit. RS485 was chosen specifically for noise rejection in metal-enclosed ducts where RF signals cannot penetrate.
 
-The console acts as a centralized command hub, housing joystick interfaces and live monitors within a single, ruggedized handheld station. By utilizing RS485 differential signaling, the system ensures deterministic control over the robot’s motors even in metal-enclosed environments where RF signals cannot penetrate.
+Multiple units were built and validated to a production-ready standard. Site visits during early deployment informed final calibration decisions on signal timing and motor response thresholds.
 
-Unlike laboratory prototypes, multiple units of this architecture were deployed commercially in production facilities. The focus was on noise rejection and high-EMI resistance, ensuring that every operational deployment remained synchronized and stable under industrial loads.
+Key challenge: Transmitting reliable video and control data simultaneously through one tether in high-EMI industrial environments. RS485 differential signaling and specialized video baluns were the right combination — no other configuration held stable under industrial loads.
 
-KEY CHALLENGE: Transmitting reliable video and control signals simultaneously through a single tether in electrically noisy industrial environments. Selecting RS485 for its noise-rejection properties and specialized video baluns for signal conversion was critical to maintaining a persistent feed in harsh EMI conditions.
-
-DISCLAIMER: Images are AI-generated references — actual build cannot be shown publicly as it is proprietary to Fubotics. Real footage and photos available on request."
+Images are reference renders. Actual build is proprietary to Fubotics. Real footage available on request."
           data-tech="RS485, RJ45, Video Balun, Analog Camera, Cable Tether, L298N, Joystick Console, Embedded C, Motor Control Systems">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="assets/duct-robot/D1.png" alt="Industrial Duct Cleaning Robot" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img" src="assets/duct-robot/D1.png" alt="Industrial Duct Cleaning Robot"
+              loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
             <div class="ai-ref-badge">🔒 AI Reference — Actual build proprietary</div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Duct Cleaning Robot</div>
-            <div class="project-desc">Commercially deployed industrial inspection robot utilizing RS485-over-tether for deterministic control in non-RF environments.</div>
+            <div class="project-desc">Commercially deployed industrial inspection robot utilizing RS485-over-tether for
+              deterministic control in non-RF environments.</div>
             <div class="project-tags">
               <span class="project-tag">RS485</span>
               <span class="project-tag">Cable-Tethered</span>
@@ -95,29 +106,32 @@ DISCLAIMER: Images are AI-generated references — actual build cannot be shown 
         </div>
 
         <!-- 2. Facade Cleaning Robot V1 -->
-        <div class="project-card" data-cat="hardware" data-name="Facade Cleaning Robot V1" data-media-type="photos" data-media='["assets/facade-v1/V1.png"]'
-          data-desc="HOOK: The prototype that proved the concept was buildable—a physical system that transitioned from an idea on paper to operating on a real building facade.
+        <div class="project-card" data-cat="hardware" data-name="Facade Cleaning Robot V1" data-media-type="photos"
+          data-media='["assets/facade-v1/V1.png"]' data-desc="The first working prototype — concept validated on an actual building facade.
 
-I owned the complete technical build from day one, covering the electronics, firmware, and mechanical assembly. The hardware utilized BLDC motors driven by ESCs for suction and movement, alongside a custom rotary brush and spray system. Power was managed by a heavy-duty SMPS engineered to handle the simultaneous current demands of multiple high-draw components without voltage sag.
+Full technical ownership from day one: electronics, firmware, and mechanical assembly built ground-up. BLDC motors driven by ESCs for suction and movement, custom rotary brush and spray system, SMPS engineered for the simultaneous current draw of multiple high-drain components. The wireless stack went through real field iteration — WiFi, then GSM, then LoRa, which was the only protocol that held reliably outdoors at range.
 
-The software architecture was built for real-world deployment, utilizing an ESP32 to communicate with a Mosquitto MQTT broker on AWS. For device management and telemetry, I integrated ThingsBoard and Ubidots, with a Flask backend serving as the API layer. The wireless stack went through multiple field iterations—testing WiFi and GSM before LoRa emerged as the only robust outdoor solution.
+Backend ran Flask on AWS with a Mosquitto MQTT broker; ThingsBoard and Ubidots handled telemetry. Every component — from brush geometry to communication architecture — was prototyped and redesigned based on failure modes encountered on actual facades, not lab assumptions.
 
-This version wasn't about refined polish; it was about exposing every engineering assumption that needed to fail before V2 could exist. Every component—from brush mounting geometry to communication protocols—was prototyped, tested, and redesigned based on real failure modes encountered during facade deployment.
+V1's job was to prove the concept was buildable and surface every assumption that needed to break before V2 could exist. It did both.
 
-KEY CHALLENGE: Establishing a reliable real-time communication pipeline between an outdoor robot and a cloud backend under unpredictable environmental conditions. Field tests exposed unique failure modes that never appeared during bench testing, necessitating a pivot to LoRa to ensure deterministic control.
+Key challenge: Building a reliable real-time control pipeline for an outdoor robot where every failure mode only shows up on an actual building. Field tests broke assumptions bench tests never touched — the pivot to LoRa came directly from that.
 
-DISCLAIMER: Images are AI-generated references — actual build cannot be shown publicly as it is proprietary to Fubotics. Real footage and photos available on request."
+Images are reference renders. Actual build is proprietary to Fubotics. Real footage available on request."
           data-tech="ESP32, LoRa, BLDC Motors, ESCs, SMPS, MQTT/Mosquitto, AWS, ThingsBoard, Ubidots, Flask, Embedded C, 3D Printed Prototypes">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/facade-v1/V1.png" alt="Facade Cleaning Robot V1" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
             <div class="ai-ref-badge">🔒 AI Reference — Actual build proprietary</div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Facade Robot V1</div>
-            <div class="project-desc">First-generation facade robot prototype featuring BLDC-driven suction, LoRa communication, and a full IoT backend on AWS/ThingsBoard.</div>
+            <div class="project-desc">First-generation facade robot prototype featuring BLDC-driven suction, LoRa
+              communication, and a full IoT backend on AWS/ThingsBoard.</div>
             <div class="project-tags">
               <span class="project-tag">ESP32</span>
               <span class="project-tag">IoT / AWS</span>
@@ -127,29 +141,33 @@ DISCLAIMER: Images are AI-generated references — actual build cannot be shown 
         </div>
 
         <!-- 3. Facade Cleaning Robot V3 -->
-        <div class="project-card" data-cat="hardware" data-name="Facade Cleaning Robot V3" data-media-type="photos" data-media='["assets/facade-v3/V3.png"]'
-          data-desc="HOOK: The industry-ready evolution—a fundamental architectural shift that eliminated operational complexity and scaled the concept for commercial volume.
+        <div class="project-card" data-cat="hardware" data-name="Facade Cleaning Robot V3" data-media-type="photos"
+          data-media='["assets/facade-v3/V3.png"]'
+          data-desc="The most technically advanced version of the three — a ground-up mechanical and systems redesign that took the facade cleaning concept to its highest form.
 
-V3 represents a departure from V2's linear evolution, focusing on a ground-up mechanical rethink. The objective was to strip away the deployment friction of earlier versions, resulting in a streamlined system that significantly reduced the manpower and auxiliary equipment required for on-site setup.
+Where V1 proved feasibility and V2 proved reliability, V3 solved scalability. The entire mechanical architecture was rethought from the frame up to eliminate operational complexity — fewer people needed on-site, less auxiliary equipment, faster setup on different building profiles. Every constraint from V1 and V2 deployments fed directly into what got stripped, rebuilt, or rearchitected here.
 
-The prototype was fully built and validated, with the complete technology package transferred for production. This iteration proved that facade cleaning could scale beyond a single specialist team, transforming a complex robotic operation into a repeatable, commercial-grade service.
+The result was a system capable of being operated and serviced by a trained team without needing the original engineer present. Complete technical documentation, SOPs, and the validated hardware package were transferred to the manufacturing partner for production scale-up. The communication backbone — ESP32, LoRa, ESP-NOW, cloud-synced AWS architecture — carried forward and refined for multi-team commercial deployment.
 
-Due to the nature of the development at Fubotics, specific technical details of the reorganized mechanism remain proprietary. However, the system maintains the robust communication backbone of its predecessors, utilizing ESP32, LoRa, and ESP-NOW within a cloud-synchronised AWS architecture.
+This is what the entire V1-to-V3 arc was building toward: a robotics product ready to multiply.
 
-KEY CHALLENGE: Rethinking the core architecture from scratch to eliminate operational complexity without compromising performance. The central constraint was commercial scalability: reducing the footprint and setup time to ensure the system remained viable for large-scale, multi-team deployments.
+Key challenge: Achieving a fundamental reduction in deployment complexity without losing the reliability that V2 had proven. Every simplification was a deliberate engineering decision — not a compromise.
 
-DISCLAIMER: Images are AI-generated references — actual build cannot be shown publicly as it is proprietary to Fubotics. Real footage and photos available on request."
+Specific mechanism details remain proprietary to Fubotics. Images are reference renders. Real footage available on request."
           data-tech="ESP32, LoRa, ESP-NOW, Embedded C, Motor Control Systems, MQTT, AWS">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/facade-v3/V3.png" alt="Facade Cleaning Robot V3" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
             <div class="ai-ref-badge">🔒 AI Reference — Actual build proprietary</div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Facade Cleaning Robot V3</div>
-            <div class="project-desc">The industry-ready, commercial-scale version of the facade cleaning robot. Architecture-level rethink for minimum operational complexity.</div>
+            <div class="project-desc">The industry-ready, commercial-scale version of the facade cleaning robot.
+              Architecture-level rethink for minimum operational complexity.</div>
             <div class="project-tags">
               <span class="project-tag">Industry-Ready</span>
               <span class="project-tag">Proprietary</span>
@@ -159,26 +177,31 @@ DISCLAIMER: Images are AI-generated references — actual build cannot be shown 
         </div>
 
         <!-- 4. Kinetic TV Wall Installation -->
-        <div class="project-card" data-cat="hardware" data-name="Kinetic TV Wall Installation" data-media-type="photos" data-media='["assets/kinetic-wall/CF2.jfif","assets/kinetic-wall/CF3.jfif","assets/kinetic-wall/CF4.jfif","assets/kinetic-wall/CF5.jfif","assets/kinetic-wall/CF6.jfif","assets/kinetic-wall/CT1.jfif"]'
-          data-desc="HOOK: A large-scale architectural installation where vertical screen motion becomes the art, choreographed via professional lighting protocols.
+        <div class="project-card" data-cat="hardware" data-name="Kinetic TV Wall Installation" data-media-type="photos"
+          data-media='["assets/kinetic-wall/CF2.jfif","assets/kinetic-wall/CF3.jfif","assets/kinetic-wall/CF4.jfif","assets/kinetic-wall/CF5.jfif","assets/kinetic-wall/CF6.jfif","assets/kinetic-wall/CT1.jfif"]'
+          data-desc="A large-scale architectural installation where vertical screen motion becomes the art, choreographed via professional lighting protocols.
 
 Built upon a heavy-duty extruded aluminum framework, this installation features five to six full-sized televisions mounted on belt-driven linear axes. Each axis is powered by high-torque stepper motors specifically engineered for precise, repeatable vertical travel over extended operational cycles.
 
-The system's intelligence lies in the communication bridge. I developed an architecture that captures DMX512 signals from a professional lighting console and converts them to RS485 for the distributed motor controllers. Each controller independently executes position and speed commands, perfectly synchronized to the DMX master timeline.
+The system's intelligence lies in the communication bridge. The architecture captures DMX512 signals from a professional lighting console and converts them to RS485 for the distributed motor controllers. Each controller independently executes position and speed commands, perfectly synchronized to the DMX master timeline.
 
-I owned the entire electronics pipeline—from signal conversion and RS485 topology to driver configuration and motor tuning. This integration ensures that the mechanical load is handled with deterministic control, maintaining perfect visual alignment across all moving elements.
+The entire electronics pipeline was owned end-to-end — signal conversion, RS485 topology, driver configuration, and motor tuning. This integration ensures that the mechanical load is handled with deterministic control, maintaining perfect visual alignment across all moving elements.
 
 KEY CHALLENGE: Converting the DMX512 lighting protocol into real-time RS485 motor control commands with zero drift. In a large-scale installation, any timing latency or signal interference is immediately visible as desynchronized movement; achieving sub-millisecond precision across the entire rig was the central engineering hurdle."
           data-tech="DMX512, RS485, Stepper Motors, Belt Drive System, Stepper Drivers, Extruded Aluminum Framework, Embedded Motor Controllers">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="assets/kinetic-wall/CF2.jfif" alt="Kinetic TV Wall Installation" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img" src="assets/kinetic-wall/CF2.jfif" alt="Kinetic TV Wall Installation"
+              loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Kinetic TV Wall</div>
-            <div class="project-desc">Stage automation system converting DMX512 lighting signals to RS485 motor commands for a choreographed array of moving displays.</div>
+            <div class="project-desc">Stage automation system converting DMX512 lighting signals to RS485 motor commands
+              for a choreographed array of moving displays.</div>
             <div class="project-tags">
               <span class="project-tag">DMX512</span>
               <span class="project-tag">RS485</span>
@@ -188,26 +211,31 @@ KEY CHALLENGE: Converting the DMX512 lighting protocol into real-time RS485 moto
         </div>
 
         <!-- 5. Golf Tracker - Golf Swing Analyzer -->
-        <div class="project-card" data-cat="hardware" data-name="Golf Tracker - Golf Swing Analyzer" data-media-type="photos" data-media='["assets/golf-tracker/CT1.jfif","assets/golf-tracker/CF2.jfif","assets/golf-tracker/CF3.jfif","assets/golf-tracker/CF4.jfif","assets/golf-tracker/CF5.jfif","assets/golf-tracker/CF6.jfif"]'
-          data-desc="HOOK: Camera-free, wearable swing telemetry that provides professional-grade feedback directly from the club shaft.
+        <div class="project-card" data-cat="hardware" data-name="Golf Tracker - Golf Swing Analyzer"
+          data-media-type="photos"
+          data-media='["assets/golf-tracker/CT1.jfif","assets/golf-tracker/CF2.jfif","assets/golf-tracker/CF3.jfif","assets/golf-tracker/CF4.jfif","assets/golf-tracker/CF5.jfif","assets/golf-tracker/CF6.jfif"]'
+          data-desc="Camera-free, wearable swing telemetry that provides professional-grade feedback directly from the club shaft.
 
 The hardware is centered around the Arduino Nano RP2040 Connect, utilizing its onboard LSM6DSOX 6-axis IMU to capture the full 3D motion profile of a swing. From a single chip, the system tracks peak angular velocity, wrist rotation, and arc consistency, mapping user intent to deterministic physical data.
 
 Data transmission is handled over BLE to a mobile companion dashboard, providing immediate post-impact metrics such as swing plane angle and trajectory deviation. The RP2040's dual-core architecture is leveraged to ensure continuous high-frequency IMU sampling on one core while the other manages wireless synchronization without data loss.
 
-To maintain the natural ergonomics of the club, I designed and 3D printed an ultra-lightweight, balanced clip-on housing. This ensures that the sensor remains secure during high-velocity motions without altering the club's swing weight or the player's feel.
+To maintain the natural ergonomics of the club, an ultra-lightweight, balanced clip-on housing was designed and 3D printed. This ensures that the sensor remains secure during high-velocity motions without altering the club's swing weight or the player's feel.
 
-KEY CHALLENGE: Extracting actionable swing metrics from raw IMU data in real-time. Accelerometer and gyroscope outputs are inherently noisy and prone to drift; I implemented a complementary filter to fuse both sensor streams into stable, coachable readings that accurately represent the physical motion."
+KEY CHALLENGE: Extracting actionable swing metrics from raw IMU data in real-time. Accelerometer and gyroscope outputs are inherently noisy and prone to drift; a complementary filter fuses both sensor streams into stable, coachable readings that accurately represent the physical motion."
           data-tech="Arduino Nano RP2040 Connect, LSM6DSOX IMU, BLE, Complementary Filter, 3D Printed Enclosure, Companion App">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/golf-tracker/CT1.jfif" alt="Golf Swing Analyzer" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Golf Tracker</div>
-            <div class="project-desc">Wearable RP2040-based swing telemetry system utilizing 6-axis IMU fusion and BLE for real-time club-head speed and angle tracking.</div>
+            <div class="project-desc">Wearable RP2040-based swing telemetry system utilizing 6-axis IMU fusion and BLE
+              for real-time club-head speed and angle tracking.</div>
             <div class="project-tags">
               <span class="project-tag">RP2040</span>
               <span class="project-tag">BLE</span>
@@ -217,8 +245,9 @@ KEY CHALLENGE: Extracting actionable swing metrics from raw IMU data in real-tim
         </div>
 
         <!-- 6. Sorting Robotic Arm -->
-        <div class="project-card" data-cat="hardware" data-name="Sorting Robotic Arm" data-media-type="photos" data-media='["assets/robotic-arm/Mini1.jfif","assets/robotic-arm/Mini2.jfif","assets/robotic-arm/Mini3.jfif","assets/robotic-arm/Mini4.jfif","assets/robotic-arm/Mini6.jfif","assets/robotic-arm/Mini7.jfif","assets/robotic-arm/Mini8.jfif"]'
-          data-desc="HOOK: A four-axis autonomous system that sees, decides, and sorts—bridging the gap between computer vision and mechanical actuation.
+        <div class="project-card" data-cat="hardware" data-name="Sorting Robotic Arm" data-media-type="photos"
+          data-media='["assets/robotic-arm/Mini1.jfif","assets/robotic-arm/Mini2.jfif","assets/robotic-arm/Mini3.jfif","assets/robotic-arm/Mini4.jfif","assets/robotic-arm/Mini6.jfif","assets/robotic-arm/Mini7.jfif","assets/robotic-arm/Mini8.jfif"]'
+          data-desc="A four-axis autonomous system that sees, decides, and sorts—bridging the gap between computer vision and mechanical actuation.
 
 The arm's physical framework is hand-fabricated from acrylic sheet, with each joint manually engineered and assembled. Motion is driven by four independent stepper motors utilizing TMC2209 drivers, providing the precise angular resolution required for high-repetition pick-and-place routines across its full operational volume.
 
@@ -226,17 +255,21 @@ The intelligence layer is powered by an OpenCV-based vision pipeline. By analyzi
 
 The entire sortation cycle—from object detection and gripper actuation to transportation and home-position reset—runs autonomously. This creates a closed-loop system where software intent is translated into precise, physical logic without any human intervention after initial deployment.
 
-KEY CHALLENGE: Translating fluctuating computer vision output into reliable, repeatable mechanical sequences. Achieving consistent detection required precise calibration of HSV thresholds to account for varying ambient lighting conditions; I had to balance sensitivity to avoid both misclassification and detection failures in unstable environments."
+KEY CHALLENGE: Translating fluctuating computer vision output into reliable, repeatable mechanical sequences. Achieving consistent detection required precise calibration of HSV thresholds to account for varying ambient lighting conditions — sensitivity balanced to avoid both misclassification and detection failures in unstable environments."
           data-tech="Arduino, TMC2209 Stepper Drivers, Stepper Motors, OpenCV, Python, USB Serial Communication, Hand-Fabricated Acrylic Frame">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="assets/robotic-arm/Mini1.jfif" alt="Color-Detecting Robotic Arm" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img" src="assets/robotic-arm/Mini1.jfif" alt="Color-Detecting Robotic Arm"
+              loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">CV Sorting Arm</div>
-            <div class="project-desc">Autonomous 4-axis pick-and-place robot utilizing an OpenCV/HSV vision pipeline for real-time color classification and sortation.</div>
+            <div class="project-desc">Autonomous 4-axis pick-and-place robot utilizing an OpenCV/HSV vision pipeline for
+              real-time color classification and sortation.</div>
             <div class="project-tags">
               <span class="project-tag">OpenCV</span>
               <span class="project-tag">TMC2209</span>
@@ -246,18 +279,23 @@ KEY CHALLENGE: Translating fluctuating computer vision output into reliable, rep
         </div>
 
         <!-- 7. Hexarover — 6-Wheel All Terrain Robot -->
-        <div class="project-card" data-cat="hardware" data-name="Hexarover — 6-Wheel All Terrain Robot" data-media-type="photos" data-media='["assets/hexarover/IMG20241121215241.jpg","assets/hexarover/IMG20241122121353.jpg","assets/hexarover/IMG20241122064318.jpg","assets/hexarover/IMG20241205045356.jpg","assets/hexarover/IMG20241209052958.jpg","assets/hexarover/IMG20241209064607.jpg","assets/hexarover/IMG20241209064745.jpg","assets/hexarover/IMG20250210143704.jpg","assets/hexarover/IMG20250210144311_01.jpg"]'
+        <div class="project-card" data-cat="hardware" data-name="Hexarover — 6-Wheel All Terrain Robot"
+          data-media-type="photos"
+          data-media='["assets/hexarover/IMG20241121215241.jpg","assets/hexarover/IMG20241122121353.jpg","assets/hexarover/IMG20241122064318.jpg","assets/hexarover/IMG20241205045356.jpg","assets/hexarover/IMG20241209052958.jpg","assets/hexarover/IMG20241209064607.jpg","assets/hexarover/IMG20241209064745.jpg","assets/hexarover/IMG20250210143704.jpg","assets/hexarover/IMG20250210144311_01.jpg"]'
           data-desc="Six-wheeled terrain-traversing rescue robot built for stairs and uneven surfaces. No custom parts, no 3D printing — PVC/acrylic frame, BTS7960 motor driver, 7.2Ah lead-acid battery. 2-person team. Full mechanical assembly, motor control firmware, and system integration end-to-end."
           data-tech="Arduino, BTS7960 Motor Drivers, Johnson DC Motors, HC-05 Bluetooth, WiFi Module, PVC and Acrylic Frame, Tank Drive Configuration, 6WD">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/hexarover/IMG20241121215241.jpg" alt="Hexarover" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Hexarover</div>
-            <div class="project-desc">Six-wheeled terrain-traversing rescue robot built for stairs and uneven surfaces.</div>
+            <div class="project-desc">Six-wheeled terrain-traversing rescue robot built for stairs and uneven surfaces.
+            </div>
             <div class="project-tags">
               <span class="project-tag">BTS7960</span>
               <span class="project-tag">6WD</span>
@@ -267,8 +305,9 @@ KEY CHALLENGE: Translating fluctuating computer vision output into reliable, rep
         </div>
 
         <!-- 8. ESPCam Coin Counter -->
-        <div class="project-card" data-cat="software" data-name="ESPCam Coin Counter" data-media-type="photos" data-media='["assets/espcam/ESPCam1.jfif","assets/espcam/ESPcam2.jfif"]'
-          data-desc="HOOK: Real-time, camera-based coin sortation achieved through classical computer vision pipelines—no heavy ML models, just pure edge detection logic.
+        <div class="project-card" data-cat="software" data-name="ESPCam Coin Counter" data-media-type="photos"
+          data-media='["assets/espcam/ESPCam1.jfif","assets/espcam/ESPcam2.jfif"]'
+          data-desc="Real-time, camera-based coin sortation achieved through classical computer vision pipelines—no heavy ML models, just pure edge detection logic.
 
 The architecture comprises an ESP32-CAM streaming live MJPEG telemetry over WiFi to a local Python environment. Utilizing OpenCV, the signal is processed through a deterministic CV pipeline: noise reduction via Gaussian blur, grayscale conversion, and Canny edge detection to isolate precise object boundaries.
 
@@ -276,17 +315,20 @@ Classification is performed via contour analysis and area thresholding. By mappi
 
 This project demonstrates the efficiency of classical vision algorithms over resource-heavy machine learning. By operating directly on geometric and topological features, the system achieves sub-millisecond classification speeds that are ideal for high-throughput edge environments.
 
-KEY CHALLENGE: Eliminating false edges caused by specular highlights on reflective coin surfaces. Since coins are inherently reflective, shadows and glare often create artifact contours; I solved this by iteratively tuning the Gaussian blur kernel and Canny thresholds to suppress surface reflections while maintaining structural boundary integrity."
+KEY CHALLENGE: Eliminating false edges caused by specular highlights on reflective coin surfaces. Since coins are inherently reflective, shadows and glare often create artifact contours — solved by iteratively tuning the Gaussian blur kernel and Canny thresholds to suppress surface reflections while maintaining structural boundary integrity."
           data-tech="ESP32-CAM, Python, OpenCV, MJPEG Stream, Contour Detection, Canny Edge Detection, Area Thresholding, WiFi">
           <div class="project-light"></div>
           <div class="project-thumb">
             <img class="project-img" src="assets/espcam/ESPCam1.jfif" alt="ESPCam Coin Counter" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category software">SOFTWARE</div>
             <div class="project-name">CV Coin Counter</div>
-            <div class="project-desc">Pure computer vision pipeline utilizing MJPEG streaming from ESP32-CAM to classify and count coin denominations via Canny/Contour analysis.</div>
+            <div class="project-desc">Pure computer vision pipeline utilizing MJPEG streaming from ESP32-CAM to classify
+              and count coin denominations via Canny/Contour analysis.</div>
             <div class="project-tags">
               <span class="project-tag">ESP32-CAM</span>
               <span class="project-tag">OpenCV</span>
@@ -296,8 +338,9 @@ KEY CHALLENGE: Eliminating false edges caused by specular highlights on reflecti
         </div>
 
         <!-- 9. Compass — Internal R&D OS -->
-        <div class="project-card" data-cat="software" data-name="Compass — Internal R&D OS" data-media-type="photos" data-media='["assets/compass/Screenshot 2026-04-14 172843.png","assets/compass/Screenshot 2026-04-14 172901.png","assets/compass/Screenshot 2026-04-14 172913.png"]'
-          data-desc="HOOK: A high-fidelity internal operating system built to centralize institutional knowledge across every level of robotic research and development.
+        <div class="project-card" data-cat="software" data-name="Compass — Internal R&D OS" data-media-type="photos"
+          data-media='["assets/compass/Screenshot 2026-04-14 172843.png","assets/compass/Screenshot 2026-04-14 172901.png","assets/compass/Screenshot 2026-04-14 172913.png"]'
+          data-desc="A high-fidelity internal operating system built to centralize institutional knowledge across every level of robotic research and development.
 
 Compass was engineered from scratch for Fubotics to transition institutional knowledge from scattered spreadsheets into a unified R&D platform. It integrates four core modules: an experiment tracker with full version history, a real-time lab inventory management system, project-contextual team chat, and a sophisticated RAG-driven AI assistant.
 
@@ -305,17 +348,21 @@ The AI intelligence layer utilizes a Retrieval-Augmented Generation pipeline. Te
 
 Currently deployed on Cloudflare Pages and actively used in production, Compass serves as the single source of truth for the company. It ensures that every hardware failure, component procurement, and architectural experiment is indexed and searchable, turning raw data into an actionable technical roadmap.
 
-KEY CHALLENGE: Engineering a RAG system capable of high-accuracy retrieval across a fragmented document corpus. I implemented a custom chunking strategy and recursive metadata filtering to navigate a mix of structured experiment tables and unstructured build notes, preventing context bleed and ensuring retrieval relevance in a multi-domain vector store."
+KEY CHALLENGE: Engineering a RAG system capable of high-accuracy retrieval across a fragmented document corpus. A custom chunking strategy and recursive metadata filtering navigates a mix of structured experiment tables and unstructured build notes — preventing context bleed and ensuring retrieval relevance in a multi-domain vector store."
           data-tech="React, Supabase, pgvector, PostgreSQL, Gemini 2.5 Flash, Mistral, Supabase Edge Functions, RAG Pipeline, Vector Embeddings, Cloudflare Pages">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="assets/compass/Screenshot 2026-04-14 172843.png" alt="Compass — Internal R&D OS" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img" src="assets/compass/Screenshot 2026-04-14 172843.png"
+              alt="Compass — Internal R&D OS" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category software">SOFTWARE</div>
             <div class="project-name">Compass R&D OS</div>
-            <div class="project-desc">Full internal R&D OS featuring experiment tracking, inventory management, and a specialized RAG AI assistant for Fubotics technical records.</div>
+            <div class="project-desc">Full internal R&D OS featuring experiment tracking, inventory management, and a
+              specialized RAG AI assistant for Fubotics technical records.</div>
             <div class="project-tags">
               <span class="project-tag">RAG / AI</span>
               <span class="project-tag">Supabase</span>
@@ -327,8 +374,10 @@ KEY CHALLENGE: Engineering a RAG system capable of high-accuracy retrieval acros
 
 
         <!-- 11. Alcohol Detection & Engine Lock Car -->
-        <div class="project-card" data-cat="hardware" data-name="Alcohol Detection & Engine Lock Car" data-media-type="photos" data-media='["assets/alcohol-car/AD1.jfif","assets/alcohol-car/AD2.jfif","assets/alcohol-car/AD3.jfif","assets/alcohol-car/AD4.jfif","assets/alcohol-car/AD5.jfif"]'
-          data-desc="HOOK: A non-bypassable safety system that detects alcohol impairment in real-time, immobilizes the vehicle, and transmits GPS-tagged location alerts.
+        <div class="project-card" data-cat="hardware" data-name="Alcohol Detection & Engine Lock Car"
+          data-media-type="photos"
+          data-media='["assets/alcohol-car/AD1.jfif","assets/alcohol-car/AD2.jfif","assets/alcohol-car/AD3.jfif","assets/alcohol-car/AD4.jfif","assets/alcohol-car/AD5.jfif"]'
+          data-desc="A non-bypassable safety system that detects alcohol impairment in real-time, immobilizes the vehicle, and transmits GPS-tagged location alerts.
 
 The system utilizes an MQ-3 alcohol sensor to continuously monitor ethanol concentration in the cabin. When levels exceed a deterministic threshold, an Arduino Uno triggers simultaneous actions: the L298N motor driver is disabled to cut power to the drive motors, and a SIM800L GSM module fires an emergency SMS alert.
 
@@ -340,13 +389,17 @@ KEY CHALLENGE: Calibrating the MQ-3 analog threshold to be reliable across varyi
           data-tech="Arduino Uno, MQ-3 Alcohol Sensor, SIM800L GSM, NEO-6M GPS, L298N Motor Driver, DC Motors">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="assets/alcohol-car/AD1.jfif" alt="Alcohol Detection &amp; Engine Lock Car" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img" src="assets/alcohol-car/AD1.jfif" alt="Alcohol Detection &amp; Engine Lock Car"
+              loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Alcohol-Lock Car</div>
-            <div class="project-desc">A smart safety prototype featuring an MQ-3 sensor, GPS triangulation, and GSM alerting for non-bypassable alcohol-triggered vehicle immobilization.</div>
+            <div class="project-desc">A smart safety prototype featuring an MQ-3 sensor, GPS triangulation, and GSM
+              alerting for non-bypassable alcohol-triggered vehicle immobilization.</div>
             <div class="project-tags">
               <span class="project-tag">MQ-3</span>
               <span class="project-tag">GSM/GPS</span>
@@ -356,8 +409,9 @@ KEY CHALLENGE: Calibrating the MQ-3 analog threshold to be reliable across varyi
         </div>
 
         <!-- 12. Gyroscopic Robotic Arm -->
-        <div class="project-card" data-cat="hardware" data-name="Gyroscopic Robotic Arm" data-media-type="video" data-media='["https://streamable.com/ely9nw"]'
-          data-desc="HOOK: A robotic arm that mirrors your hand movements in real-time—zero buttons, zero apps, pure gesture.
+        <div class="project-card" data-cat="hardware" data-name="Gyroscopic Robotic Arm" data-media-type="video"
+          data-media='["https://streamable.com/ely9nw"]'
+          data-desc="A robotic arm that mirrors your hand movements in real-time—zero buttons, zero apps, pure gesture.
 
 Developed in two phases, the project began with a hand-fabricated foam board structure to establish the mechanical foundation and PWM control logic for four independent servo joints. Phase two introduced a wrist-mounted MPU6050 IMU to capture accelerometer and gyroscope data.
 
@@ -369,13 +423,18 @@ KEY CHALLENGE: Converting raw IMU sensor data into smooth, proportional servo mo
           data-tech="ESP32, MPU6050 IMU, PCA9685 PWM Driver, SG90 Servo Motors, ESP-NOW, Foam Board Frame">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Gyroscopic Robotic Arm" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img"
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+              alt="Gyroscopic Robotic Arm" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Gyroscopic Arm</div>
-            <div class="project-desc">A gesture-controlled 4-DOF mechanical arm that mirrors hand movements in real-time via MPU6050 IMU and wireless ESP-NOW communication.</div>
+            <div class="project-desc">A gesture-controlled 4-DOF mechanical arm that mirrors hand movements in real-time
+              via MPU6050 IMU and wireless ESP-NOW communication.</div>
             <div class="project-tags">
               <span class="project-tag">ESP-NOW</span>
               <span class="project-tag">IMU Fusion</span>
@@ -385,8 +444,9 @@ KEY CHALLENGE: Converting raw IMU sensor data into smooth, proportional servo mo
         </div>
 
         <!-- 13. Bluetooth Multi-Mode Car -->
-        <div class="project-card" data-cat="hardware" data-name="Bluetooth Multi-Mode Car" data-media-type="video" data-media='["https://streamable.com/8n8ri5"]'
-          data-desc="HOOK: Not just a remote-controlled car—this build is a multi-mode platform capable of transitioning between user intent and autonomous behavior in real-time.
+        <div class="project-card" data-cat="hardware" data-name="Bluetooth Multi-Mode Car" data-media-type="video"
+          data-media='["https://streamable.com/8n8ri5"]'
+          data-desc="Not just a remote-controlled car—this build is a multi-mode platform capable of transitioning between user intent and autonomous behavior in real-time.
 
 An Arduino Uno acts as the central logic unit, receiving commands over Bluetooth via an HC-05 module paired with a custom mobile application. The car supports three distinct operating modes: manual directional control, autonomous object-following, and obstacle avoidance.
 
@@ -398,13 +458,18 @@ KEY CHALLENGE: Managing clean transitions between manual and autonomous control 
           data-tech="Arduino Uno, HC-05 Bluetooth, Ultrasonic Sensor, L298N Motor Driver, DC Motors, Custom Mobile App">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Bluetooth Multi-Mode Car" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img"
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+              alt="Bluetooth Multi-Mode Car" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Multi-Mode Car</div>
-            <div class="project-desc">A three-mode robotic vehicle that switches between manual Bluetooth control, object following, and autonomous obstacle avoidance on the fly.</div>
+            <div class="project-desc">A three-mode robotic vehicle that switches between manual Bluetooth control,
+              object following, and autonomous obstacle avoidance on the fly.</div>
             <div class="project-tags">
               <span class="project-tag">Bluetooth</span>
               <span class="project-tag">Autonomous</span>
@@ -414,8 +479,9 @@ KEY CHALLENGE: Managing clean transitions between manual and autonomous control 
         </div>
 
         <!-- 14. WiFi Car -->
-        <div class="project-card" data-cat="hardware" data-name="WiFi Car" data-media-type="video" data-media='["https://streamable.com/2f3d2b"]'
-          data-desc="HOOK: One of the earliest lessons in embedded systems — you don't need expensive hardware to build something real.
+        <div class="project-card" data-cat="hardware" data-name="WiFi Car" data-media-type="video"
+          data-media='["https://streamable.com/2f3d2b"]'
+          data-desc="One of the earliest lessons in embedded systems — you don't need expensive hardware to build something real.
 
 An ESP8266 connects to WiFi and communicates with the Blynk cloud platform. The Blynk mobile app sends real-time button commands over the internet to the ESP, which receives them and outputs the corresponding direction signals to an L298N motor driver controlling two DC motors. No custom web server, no manual HTTP parsing — Blynk handles the communication layer, the ESP handles the execution.
 
@@ -427,13 +493,18 @@ KEY CHALLENGE: Achieving reliable real-time motor control over WiFi without writ
           data-tech="ESP8266,Blynk Cloud,L298N Motor Driver,DC Motors,USB Powerbank">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="WiFi Car" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img"
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+              alt="WiFi Car" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">WiFi Car</div>
-            <div class="project-desc">ESP8266 + Blynk cloud car. The first time the full IoT loop clicked — mobile input, cloud relay, microcontroller, physical output.</div>
+            <div class="project-desc">ESP8266 + Blynk cloud car. The first time the full IoT loop clicked — mobile
+              input, cloud relay, microcontroller, physical output.</div>
             <div class="project-tags">
               <span class="project-tag">ESP8266</span>
               <span class="project-tag">Blynk</span>
@@ -443,8 +514,9 @@ KEY CHALLENGE: Achieving reliable real-time motor control over WiFi without writ
         </div>
 
         <!-- 15. Smart Waste Segregation Dustbin -->
-        <div class="project-card" data-cat="hardware" data-name="Smart Waste Segregation Dustbin" data-media-type="video" data-media='["https://streamable.com/xgyhig"]'
-          data-desc="HOOK: An autonomous sensor-fusion system that classifies and sorts waste into wet, metallic, and dry categories using high-fidelity signal thresholding.
+        <div class="project-card" data-cat="hardware" data-name="Smart Waste Segregation Dustbin"
+          data-media-type="video" data-media='["https://streamable.com/xgyhig"]'
+          data-desc="An autonomous sensor-fusion system that classifies and sorts waste into wet, metallic, and dry categories using high-fidelity signal thresholding.
 
 This system utilizes a dual-sensor input pipeline to eliminate sorting friction. A capacitive moisture sensor analyzes material conductivity through analog voltage mapping, while an inductive proximity sensor provides deterministic detection for ferrous and non-ferrous metals, independent of surface aesthetics or contamination.
 
@@ -456,13 +528,18 @@ KEY CHALLENGE: Calibrating the moisture sensor’s analog threshold to remain re
           data-tech="Arduino Uno, Capacitive Soil Moisture Sensor, Inductive Proximity Sensor, SG90 Servo Motors, Status LEDs, PWM Control">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15f?auto=format&fit=crop&w=800&q=80" alt="Smart Waste Segregation Dustbin" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img"
+              src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15f?auto=format&fit=crop&w=800&q=80"
+              alt="Smart Waste Segregation Dustbin" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Smart Waste Bin</div>
-            <div class="project-desc">Autonomous sensor-fusion sorting system that utilizes a priority-based decision tree to classify wet, metallic, and dry waste with deterministic accuracy.</div>
+            <div class="project-desc">Autonomous sensor-fusion sorting system that utilizes a priority-based decision
+              tree to classify wet, metallic, and dry waste with deterministic accuracy.</div>
             <div class="project-tags">
               <span class="project-tag">Sensor Fusion</span>
               <span class="project-tag">PWM Control</span>
@@ -472,8 +549,9 @@ KEY CHALLENGE: Calibrating the moisture sensor’s analog threshold to remain re
         </div>
 
         <!-- 16. NeoPixel Music Visualizer V1 — Software Reactive -->
-        <div class="project-card" data-cat="software" data-name="NeoPixel Music Visualizer V1 — Software Reactive" data-media-type="video" data-media='["https://streamable.com/4xtiwk"]'
-          data-desc="HOOK: A high-fidelity LED visualization system that renders the frequency spectrum of live system audio in real-time.
+        <div class="project-card" data-cat="software" data-name="NeoPixel Music Visualizer V1 — Software Reactive"
+          data-media-type="video" data-media='["https://streamable.com/4xtiwk"]'
+          data-desc="A high-fidelity LED visualization system that renders the frequency spectrum of live system audio in real-time.
 
 Driven by a Processing sketch on the PC, this system captures continuous system audio output and performs Fast Fourier Transform (FFT) analysis to extract amplitude data across multiple frequency bands. By mapping bass, mids, and highs to independent LED parameters—color, intensity, and animation speed—it creates a visual representation of the sound's shape rather than simple beat-triggered flashes.
 
@@ -485,13 +563,18 @@ KEY CHALLENGE: Minimizing latency between audio analysis and hardware response t
           data-tech="ESP8266, NeoPixel LED Strip, FastLED Library, Processing, FFT Audio Analysis, USB Serial Communication">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="NeoPixel Music Visualizer V1" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img"
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+              alt="NeoPixel Music Visualizer V1" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">SOFTWARE</div>
             <div class="project-name">Visualizer V1 — Software</div>
-            <div class="project-desc">Real-time system audio visualizer utilizing a PC-side Processing FFT pipeline to drive high-refresh LED animations over USB serial.</div>
+            <div class="project-desc">Real-time system audio visualizer utilizing a PC-side Processing FFT pipeline to
+              drive high-refresh LED animations over USB serial.</div>
             <div class="project-tags">
               <span class="project-tag">Processing</span>
               <span class="project-tag">FFT</span>
@@ -501,8 +584,9 @@ KEY CHALLENGE: Minimizing latency between audio analysis and hardware response t
         </div>
 
         <!-- 17. NeoPixel Music Visualizer V2 — Microphone Reactive -->
-        <div class="project-card" data-cat="hardware" data-name="NeoPixel Music Visualizer V2 — Microphone Reactive" data-media-type="video" data-media='["https://streamable.com/ep850z"]'
-          data-desc="HOOK: Cut the wire. A decoupled visualization system that reacts to any audio source—from Spotify streams to ambient room conversation.
+        <div class="project-card" data-cat="hardware" data-name="NeoPixel Music Visualizer V2 — Microphone Reactive"
+          data-media-type="video" data-media='["https://streamable.com/ep850z"]'
+          data-desc="Cut the wire. A decoupled visualization system that reacts to any audio source—from Spotify streams to ambient room conversation.
 
 Building on the V1 architecture, V2 shifts to a system-wide ingestion model. By implementing a virtual audio cable driver, all system audio—including browser tabs, media players, and hardware microphone inputs—is routed into a unified stream for the PC-side Processing sketch.
 
@@ -514,13 +598,18 @@ KEY CHALLENGE: Routing disparate audio sources into a single, capturable stream 
           data-tech="ESP8266, NeoPixel LED Strip, FastLED Library, Processing, Virtual Audio Cable, FFT Analysis, USB Serial, Microphone Input">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="NeoPixel Music Visualizer V2" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img"
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+              alt="NeoPixel Music Visualizer V2" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category">HARDWARE</div>
             <div class="project-name">Visualizer V2 — Mic Reactive</div>
-            <div class="project-desc">Source-agnostic music visualizer using virtual audio routing to capture and render system-wide audio and ambient room sound in real-time.</div>
+            <div class="project-desc">Source-agnostic music visualizer using virtual audio routing to capture and render
+              system-wide audio and ambient room sound in real-time.</div>
             <div class="project-tags">
               <span class="project-tag">Virtual Audio</span>
               <span class="project-tag">FFT</span>
@@ -530,18 +619,24 @@ KEY CHALLENGE: Routing disparate audio sources into a single, capturable stream 
         </div>
 
         <!-- 10. Marketing Agent -->
-        <div class="project-card" data-cat="software" data-name="Marketing Agent" data-media-type="photos" data-media="[]"
+        <div class="project-card" data-cat="software" data-name="Marketing Agent" data-media-type="photos"
+          data-media="[]"
           data-desc="Multi-agent marketing automation system for Fubotics. LangGraph orchestrates a CrewAI crew that researches, writes, and publishes content across platforms. Human-in-the-loop (HITL) approval via a Telegram bot before anything goes live. Supports multi-platform scheduling."
           data-tech="LangGraph,CrewAI,LangChain,Telegram Bot,HITL,Python,OpenRouter">
           <div class="project-light"></div>
           <div class="project-thumb">
-            <img class="project-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="Fubotics Marketing Agent" loading="lazy" />
-            <div class="project-overlay"><div class="project-overlay-text">VIEW DETAILS</div></div>
+            <img class="project-img"
+              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+              alt="Fubotics Marketing Agent" loading="lazy" />
+            <div class="project-overlay">
+              <div class="project-overlay-text">VIEW DETAILS</div>
+            </div>
           </div>
           <div class="project-body">
             <div class="project-category software">SOFTWARE</div>
             <div class="project-name">Fubotics Marketing Agent</div>
-            <div class="project-desc">LangGraph + CrewAI multi-agent system. HITL Telegram approval. Multi-platform publishing.</div>
+            <div class="project-desc">LangGraph + CrewAI multi-agent system. HITL Telegram approval. Multi-platform
+              publishing.</div>
             <div class="project-tags">
               <span class="project-tag">LangGraph</span>
               <span class="project-tag">CrewAI</span>
@@ -551,7 +646,9 @@ KEY CHALLENGE: Routing disparate audio sources into a single, capturable stream 
         </div>
 
         <div style="text-align: center; margin-top: 3.5rem; grid-column: 1 / -1;">
-          <p style="color: var(--text-muted); font-size: 0.8rem; font-family: var(--mono); letter-spacing: 0.5px;">This isn't everything. Some builds live in hard drives. Some in memories. The ones that mattered most are above.</p>
+          <p style="color: var(--text-muted); font-size: 0.8rem; font-family: var(--mono); letter-spacing: 0.5px;">This
+            isn't everything. Some builds live in hard drives. Some in memories. The ones that mattered most are above.
+          </p>
         </div>
       </div>
     </div>
@@ -566,7 +663,7 @@ KEY CHALLENGE: Routing disparate audio sources into a single, capturable stream 
     </div>
     <div class="footer-socials">
       <a href="https://github.com/thisisnish88-code" target="_blank">↗ GitHub</a>
-      <a href="https://linkedin.com/in/nishanth-k-b0b0b2250" target="_blank">↗ LinkedIn</a>
+      <a href="https://linkedin.com/in/nishanth-k88" target="_blank">↗ LinkedIn</a>
       <a href="https://app-heyneuron.pages.dev" target="_blank">↗ Neuron</a>
     </div>
   </footer>
@@ -601,7 +698,8 @@ KEY CHALLENGE: Routing disparate audio sources into a single, capturable stream 
           <p id="modal-desc" class="modal-desc"></p>
           <div id="modal-tags" class="modal-tags"></div>
           <div id="modal-links" class="modal-links" style="margin-top: 1.5rem; display: none;">
-            <a id="modal-live-link" href="#" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem;">↗ View Live</a>
+            <a id="modal-live-link" href="#" target="_blank" class="btn btn-outline"
+              style="padding: 0.5rem 1rem; font-size: 0.8rem;">↗ View Live</a>
           </div>
         </div>
       </div>
@@ -610,4 +708,5 @@ KEY CHALLENGE: Routing disparate audio sources into a single, capturable stream 
 
   <script src="script.js"></script>
 </body>
+
 </html>
