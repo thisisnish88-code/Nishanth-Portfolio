@@ -84,22 +84,32 @@ const nebulae = [
   { cx: 0.8, cy: 0.2, r: 0.40, color: '110,50,200', alpha: 0.02, phase: 4.0, speed: 0.0005 },
 ];
 
-// ---- Occasional shooting stars (rare, graceful) ----
+// ---- Environment Planets & Asteroids (Subtle) ----
+const planets = [
+  // Distant subtle gas giant
+  { cx: -0.05, cy: 0.25, r: 0.12, color: '80, 50, 150', alpha: 0.04, speed: 0.00015 },
+  // Tiny distant moon
+  { cx: 0.9, cy: 0.8, r: 0.02, color: '180, 180, 220', alpha: 0.06, speed: -0.00008 },
+];
+
+// ---- Occasional shooting stars & fragments (breaking comets) ----
 const shooters = [];
+const fragments = [];
 let nextShooter = Date.now() + 2000 + Math.random() * 4000;
 
 function spawnShooter() {
   const side  = Math.random() < 0.6 ? 'top' : 'right';
   const angle = (20 + Math.random() * 25) * (Math.PI / 180);
-  const speed = 1.5 + Math.random() * 2.0; // much slower, calm comets
+  const speed = 1.5 + Math.random() * 2.0; // calm comets
   shooters.push({
     x:     side === 'top' ? Math.random() * spaceCanvas.width : spaceCanvas.width + 10,
     y:     side === 'top' ? -10 : Math.random() * spaceCanvas.height * 0.6,
     vx:    side === 'top' ?  Math.cos(angle) * speed :  -Math.cos(angle) * speed,
     vy:    side === 'top' ?  Math.sin(angle) * speed :   Math.sin(angle) * speed * 0.9,
     life:  1.0,
-    decay: 0.002 + Math.random() * 0.002, // very slow fade
-    len:   80 + Math.random() * 100, // much longer tail
+    decay: 0.002 + Math.random() * 0.002, 
+    len:   80 + Math.random() * 100,
+    breaking: Math.random() > 0.4 // 60% chance to break into pieces
   });
 }
 
@@ -122,7 +132,6 @@ function drawSpace() {
 
   // 2. Breathing nebula — slow pulsing vignettes
   nebulae.forEach(n => {
-    // Make pulse wider and more noticeable for the breathing effect
     const pulse = Math.sin(spaceT * n.speed * 100 + n.phase) * 0.05;
     const r     = Math.max(0, (n.r + pulse) * Math.max(W, H));
     const cx    = n.cx * W;
@@ -133,6 +142,27 @@ function drawSpace() {
     g.addColorStop(1,   `rgba(${n.color}, 0)`);
     sCtxS.fillStyle = g;
     sCtxS.fillRect(0, 0, W, H);
+  });
+
+  // 2.5 Subtle Background Planets
+  planets.forEach(p => {
+    p.cx += p.speed;
+    if (p.cx > 1.2) p.cx = -0.2;
+    if (p.cx < -0.2) p.cx = 1.2;
+
+    const r = p.r * Math.max(W, H);
+    const cx = p.cx * W;
+    const cy = p.cy * H;
+
+    const pg = sCtxS.createRadialGradient(cx - r*0.3, cy - r*0.3, 0, cx, cy, r);
+    pg.addColorStop(0,   `rgba(${p.color}, ${p.alpha * 1.5})`);
+    pg.addColorStop(0.8, `rgba(${p.color}, ${p.alpha * 0.2})`);
+    pg.addColorStop(1,   `rgba(${p.color}, 0)`);
+
+    sCtxS.beginPath();
+    sCtxS.arc(cx, cy, r, 0, Math.PI * 2);
+    sCtxS.fillStyle = pg;
+    sCtxS.fill();
   });
 
   // 3. Stars — gentle, calm twinkle
@@ -151,11 +181,28 @@ function drawSpace() {
     sCtxS.shadowBlur = 0;
   });
 
-  // 4. Calm Comets background
+  // 4. Fragments (Breaking Comet Pieces)
+  for (let i = fragments.length - 1; i >= 0; i--) {
+    const f = fragments[i];
+    f.x += f.vx;
+    f.y += f.vy;
+    f.life -= f.decay;
+    if (f.life <= 0) { fragments.splice(i, 1); continue; }
+
+    sCtxS.beginPath();
+    sCtxS.arc(f.x, f.y, f.size * Math.max(0, f.life), 0, Math.PI * 2);
+    sCtxS.fillStyle = `rgba(168, 85, 247, ${f.life * 0.8})`;
+    sCtxS.shadowBlur = 4;
+    sCtxS.shadowColor = `rgba(168, 85, 247, ${f.life})`;
+    sCtxS.fill();
+    sCtxS.shadowBlur = 0;
+  }
+
+  // 5. Calm Comets background
   const now = Date.now();
   if (now > nextShooter) {
     spawnShooter();
-    nextShooter = now + 5000 + Math.random() * 6000; // Calm, infrequent comets
+    nextShooter = now + 4000 + Math.random() * 5000; // Calm, infrequent comets
   }
 
   for (let i = shooters.length - 1; i >= 0; i--) {
@@ -163,7 +210,22 @@ function drawSpace() {
     sh.x    += sh.vx;
     sh.y    += sh.vy;
     sh.life -= sh.decay;
+    
     if (sh.life <= 0) { shooters.splice(i, 1); continue; }
+
+    // Sporadic breaking effect
+    if (sh.breaking && sh.life > 0.2 && Math.random() < 0.04) {
+      for (let j = 0; j < Math.random() * 3 + 1; j++) {
+        fragments.push({
+          x: sh.x, y: sh.y,
+          vx: sh.vx * (0.6 + Math.random() * 0.6) + (Math.random() - 0.5) * 1.5,
+          vy: sh.vy * (0.6 + Math.random() * 0.6) + (Math.random() - 0.5) * 1.5,
+          life: sh.life,
+          decay: 0.01 + Math.random() * 0.02,
+          size: 0.5 + Math.random() * 1.5
+        });
+      }
+    }
 
     const speedHypot = Math.hypot(sh.vx, sh.vy);
     const tailX = sh.x - sh.vx * (sh.len / speedHypot);
@@ -178,8 +240,8 @@ function drawSpace() {
     sCtxS.lineTo(sh.x, sh.y);
     sCtxS.strokeStyle = lg;
     sCtxS.lineWidth   = sh.life * 1.5; // Thinner, sharper comet
-    sCtxS.shadowBlur  = 15;            // Wider glow
-    sCtxS.shadowColor = `rgba(168, 85, 247, ${sh.life * 0.8})`;
+    sCtxS.shadowBlur  = 10;            // Gentle glow
+    sCtxS.shadowColor = `rgba(168, 85, 247, ${sh.life * 0.6})`;
     sCtxS.stroke();
     sCtxS.shadowBlur  = 0;
   }
@@ -842,9 +904,19 @@ projectCards.forEach(card => {
     if (card.dataset.url && modalLinks) {
       modalLiveLink.href = card.dataset.url;
       modalLinks.style.display = 'block';
+      
+      // Override click to open BOTH links robustly
+      modalLiveLink.onclick = function(e) {
+        if (card.dataset.urlSecondary) {
+          e.preventDefault(); // Stop default href
+          window.open(card.dataset.url, '_blank');
+          window.open(card.dataset.urlSecondary, '_blank');
+        }
+      };
     } else if (modalLinks) {
       modalLinks.style.display = 'none';
       modalLiveLink.href = '#';
+      modalLiveLink.onclick = null;
     }
 
     // ── Media area ──
