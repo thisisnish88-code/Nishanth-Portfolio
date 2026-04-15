@@ -84,10 +84,16 @@ window.addEventListener('resize', () => {
 
 // ---- Distant planets — small, far away ----
 const planets = [
-  { cx: 0.12, cy: 0.22, r: 0.018, color: '140,100,220', alpha: 0.55, speed: 0.00008,  hasRing: true  },
-  { cx: 0.82, cy: 0.68, r: 0.010, color: '180,160,255', alpha: 0.45, speed: -0.00006, hasRing: false },
-  { cx: 0.60, cy: 0.88, r: 0.007, color: '200,190,255', alpha: 0.40, speed: 0.00004,  hasRing: false },
-  { cx: 0.35, cy: 0.08, r: 0.005, color: '160,200,255', alpha: 0.35, speed: -0.00003, hasRing: false },
+  { cx: 0.08,  cy: 0.15, r: 0.0035, color: '180,160,255', alpha: 0.80, speed:  0.00007  },
+  { cx: 0.22,  cy: 0.72, r: 0.0025, color: '160,200,255', alpha: 0.70, speed: -0.00005  },
+  { cx: 0.45,  cy: 0.05, r: 0.0030, color: '200,180,255', alpha: 0.75, speed:  0.00004  },
+  { cx: 0.68,  cy: 0.88, r: 0.0020, color: '180,220,255', alpha: 0.65, speed: -0.00006  },
+  { cx: 0.78,  cy: 0.30, r: 0.0045, color: '150,140,255', alpha: 0.85, speed:  0.00003  },
+  { cx: 0.90,  cy: 0.55, r: 0.0028, color: '200,160,255', alpha: 0.70, speed: -0.00004  },
+  { cx: 0.15,  cy: 0.45, r: 0.0022, color: '170,210,255', alpha: 0.60, speed:  0.00009  },
+  { cx: 0.55,  cy: 0.60, r: 0.0018, color: '220,200,255', alpha: 0.55, speed: -0.00007  },
+  { cx: 0.33,  cy: 0.92, r: 0.0040, color: '140,160,220', alpha: 0.75, speed:  0.00005  },
+  { cx: 0.72,  cy: 0.12, r: 0.0015, color: '200,220,255', alpha: 0.50, speed: -0.00003  },
 ];
 
 // ---- Comets ----
@@ -137,44 +143,31 @@ function drawSpace() {
   // 3. Distant planets
   planets.forEach(p => {
     p.cx += p.speed;
-    if (p.cx > 1.15) p.cx = -0.15;
-    if (p.cx < -0.15) p.cx = 1.15;
+    if (p.cx > 1.1) p.cx = -0.1;
+    if (p.cx < -0.1) p.cx = 1.1;
 
     const r  = p.r * Math.max(W, H);
     const cx = p.cx * W;
     const cy = p.cy * H;
 
-    // Glow halo
-    const halo = sCtxS.createRadialGradient(cx, cy, 0, cx, cy, r * 3.5);
-    halo.addColorStop(0,   `rgba(${p.color}, ${p.alpha * 0.25})`);
+    // Soft glow halo
+    const halo = sCtxS.createRadialGradient(cx, cy, 0, cx, cy, r * 5);
+    halo.addColorStop(0,   `rgba(${p.color}, ${p.alpha * 0.4})`);
+    halo.addColorStop(0.4, `rgba(${p.color}, ${p.alpha * 0.1})`);
     halo.addColorStop(1,   `rgba(${p.color}, 0)`);
     sCtxS.fillStyle = halo;
-    sCtxS.fillRect(cx - r*4, cy - r*4, r*8, r*8);
+    sCtxS.beginPath();
+    sCtxS.arc(cx, cy, r * 5, 0, Math.PI * 2);
+    sCtxS.fill();
 
-    // Planet body
-    const pg = sCtxS.createRadialGradient(cx - r*0.3, cy - r*0.35, 0, cx, cy, r);
-    pg.addColorStop(0,   `rgba(${p.color}, ${p.alpha})`);
-    pg.addColorStop(0.6, `rgba(${p.color}, ${p.alpha * 0.6})`);
-    pg.addColorStop(1,   `rgba(${p.color}, 0.05)`);
+    // Planet dot
     sCtxS.beginPath();
     sCtxS.arc(cx, cy, r, 0, Math.PI * 2);
-    sCtxS.fillStyle = pg;
-    sCtxS.shadowBlur  = r * 1.5;
-    sCtxS.shadowColor = `rgba(${p.color}, 0.5)`;
+    sCtxS.fillStyle   = `rgba(${p.color}, ${p.alpha})`;
+    sCtxS.shadowBlur  = r * 3;
+    sCtxS.shadowColor = `rgba(${p.color}, 0.8)`;
     sCtxS.fill();
     sCtxS.shadowBlur = 0;
-
-    // Ring (largest planet only)
-    if (p.hasRing) {
-      sCtxS.beginPath();
-      sCtxS.ellipse(cx, cy, r * 2.2, r * 0.45, 0.3, 0, Math.PI * 2);
-      sCtxS.strokeStyle = `rgba(${p.color}, 0.25)`;
-      sCtxS.lineWidth   = r * 0.22;
-      sCtxS.shadowBlur  = r;
-      sCtxS.shadowColor = `rgba(${p.color}, 0.3)`;
-      sCtxS.stroke();
-      sCtxS.shadowBlur = 0;
-    }
   });
 
   // 4. Stars
