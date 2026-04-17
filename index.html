@@ -216,7 +216,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-company">Craft Tech 360</div>
-          <div class="timeline-role">Embedded Engineer Intern</div>
+          <div class="timeline-role">Embedded Hardware Engineer</div>
           <div class="timeline-meta">
             <span>⏱ Apr 2024 – Jul 2024</span>
             <span>📍 Bengaluru</span>
@@ -345,7 +345,9 @@ That's the finish line for this kind of engineering work. Building something goo
 
 Key challenge: 3-phase motor interference was blocking LoRa 15 days before deployment. Diagnosed the source, built a custom LoRa-to-WiFi bridge as a workaround, shipped on time.
 
-Actual build is proprietary to Fubotics. Images are reference renders. Real footage available on request."
+Actual build is proprietary to Fubotics. Images are reference renders. Real footage available on request.
+
+Simulated dual-gantry cable kinematics and tilt analysis with force sensors in CoppeliaSim prior to physical deployment."
           data-tech="ESP32, LoRa, ESP-NOW, Embedded C, MQTT, Mosquitto, AWS, Flask, Razorpay, Compass Integration, REST API">
           <div class="project-light"></div>
           <div class="project-thumb">
@@ -540,6 +542,8 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <path id="t-3d-proto" class="pcb-trace trace-mech" data-nodes="3dprint proto" pathLength="100" d="M650 100 L550 100" />
             <path id="t-on-assem" class="pcb-trace trace-mech" data-nodes="onshape assem" pathLength="100" d="M750 150 L850 150 L850 80" />
             <path id="t-cad-fast" class="pcb-trace trace-mech" data-nodes="cad fast" pathLength="100" d="M850 250 L950 250 L950 220" />
+            <path id="t-on-coppelia" class="pcb-trace trace-mech" data-nodes="onshape coppelia" pathLength="100" d="M750 150 L600 150 L600 50" />
+            <path id="t-coppelia-proto" class="pcb-trace trace-mech" data-nodes="coppelia proto" pathLength="100" d="M600 50 L550 50 L550 100" />
 
             <!-- Software Lines -->
             <path id="t-react-flask" class="pcb-trace trace-sw" data-nodes="react flask" pathLength="100" d="M150 500 L300 500 L300 400" />
@@ -556,7 +560,11 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <path id="t-lang-or" class="pcb-trace trace-ai" data-nodes="langgraph openrouter" pathLength="100" d="M850 450 L850 510 L780 510" />
             <path id="t-rag-vec" class="pcb-trace trace-ai" data-nodes="rag vectors" pathLength="100" d="M700 400 L620 400 L620 500" />
             <path id="t-lang-crew" class="pcb-trace trace-ai" data-nodes="langgraph crewai" pathLength="100" d="M850 450 L920 450 L920 350" />
-            <path id="t-or-gem" class="pcb-trace trace-ai" data-nodes="openrouter gemini" pathLength="100" d="M780 550 L780 520 L900 520" />
+            <path id="t-or-gem" class="pcb-trace trace-ai" data-nodes="openrouter gemini" pathLength="100" d="M780 510 L900 510 L900 520" />
+            <path id="t-rag-n8n" class="pcb-trace trace-ai" data-nodes="rag n8n" pathLength="100" d="M700 400 L700 380 L750 380 L750 360" />
+            <path id="t-n8n-lang" class="pcb-trace trace-ai" data-nodes="n8n langgraph" pathLength="100" d="M750 360 L850 360 L850 450" />
+            <path id="t-vec-supa" class="pcb-trace trace-ai" data-nodes="vectors supabase" pathLength="100" d="M620 500 L350 500 L350 520" />
+            <path id="t-crew-or" class="pcb-trace trace-ai" data-nodes="crewai openrouter" pathLength="100" d="M920 350 L950 350 L950 510 L780 510" />
 
             <!-- Pulse Dots -->
             <circle r="2.5" class="pulse-dot pulse-hw"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#t-esp-lora"/></animateMotion></circle>
@@ -569,6 +577,12 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <circle r="2.5" class="pulse-dot pulse-sw"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#t-supa-aws"/></animateMotion></circle>
             <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#t-rag-lang"/></animateMotion></circle>
             <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#t-lang-or"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-mech"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#t-on-coppelia"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-mech"><animateMotion dur="3.5s" repeatCount="indefinite"><mpath href="#t-coppelia-proto"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#t-rag-n8n"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#t-n8n-lang"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#t-vec-supa"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="5.5s" repeatCount="indefinite"><mpath href="#t-crew-or"/></animateMotion></circle>
           </svg>
 
           <div class="pcb-nodes">
@@ -609,6 +623,7 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <!-- Added Mechanical Nodes -->
             <div class="pcb-node node-mech" data-id="wire" data-cat="Mechanical Design" style="left: 70%; top: 12%">Wiring Harness Design</div>
             <div class="pcb-node node-mech" data-id="proto" data-cat="Mechanical Design" style="left: 55%; top: 16.66%">Prototyping</div>
+            <div class="pcb-node node-mech" data-id="coppelia" data-cat="Mechanical Design" style="left: 60%; top: 8.33%">CoppeliaSim</div>
             <div class="pcb-node node-mech" data-id="assem" data-cat="Mechanical Design" style="left: 85%; top: 13.33%">Assembly Design</div>
             <div class="pcb-node node-mech" data-id="fast" data-cat="Mechanical Design" style="left: 95%; top: 36.66%">Fastener Selection</div>
             
@@ -763,10 +778,15 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
                 <span class="contact-row-key">GITHUB</span>
                 <span class="contact-row-val">github.com/thisisnish88-code</span>
               </a>
-              <a href="https://heyneuron.pages.dev" target="_blank" onclick="window.open('https://app-heyneuron.pages.dev', '_blank');" class="contact-row">
+              <a href="https://heyneuron.pages.dev" target="_blank" class="contact-row">
                 <span class="contact-prompt">&gt;</span>
                 <span class="contact-row-key">NEURON</span>
                 <span class="contact-row-val">heyneuron.pages.dev</span>
+              </a>
+              <a href="https://app-heyneuron.pages.dev" target="_blank" class="contact-row">
+                <span class="contact-prompt">&gt;</span>
+                <span class="contact-row-key">APP</span>
+                <span class="contact-row-val">app-heyneuron.pages.dev</span>
               </a>
               <div class="contact-row" style="cursor:default;">
                 <span class="contact-prompt">&gt;</span>
