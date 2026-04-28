@@ -1019,13 +1019,13 @@ projectCards.forEach(card => {
     });
 
     modalBackdrop.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
   });
 });
 
 function closeModal() {
   modalBackdrop.classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
   clearCarouselTimer();
   // Pause any video
   const v = document.getElementById('modal-video');
