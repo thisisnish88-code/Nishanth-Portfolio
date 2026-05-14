@@ -525,6 +525,9 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <path id="t-step-tune" class="pcb-trace trace-hw" data-nodes="stepper motor_tune" pathLength="100" d="M250 80 L250 60 L200 60" />
             <path id="t-bldc-pwm" class="pcb-trace trace-hw" data-nodes="bldc pwm" pathLength="100" d="M120 100 L120 50 L140 50" />
             <path id="t-ard-cpp" class="pcb-trace trace-hw" data-nodes="arduino cpp" pathLength="100" d="M180 220 L120 220 L120 72" />
+            <path id="t-esp-freertos" class="pcb-trace trace-hw" data-nodes="esp32 freertos" pathLength="100" d="M300 150 L300 65 L470 65" />
+            <path id="t-freertos-ros2" class="pcb-trace trace-hw" data-nodes="freertos ros2" pathLength="100" d="M470 65 L540 65 L540 132" />
+            <path id="t-freertos-slam" class="pcb-trace trace-hw" data-nodes="freertos slam" pathLength="100" d="M470 65 L470 228 L510 228" />
             
             <!-- Cross Quad Lines -->
             <path id="t-esp-flask" class="pcb-trace trace-cross" data-nodes="esp32 flask" pathLength="100" d="M300 150 L300 400" />
@@ -583,6 +586,9 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#t-n8n-lang"/></animateMotion></circle>
             <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#t-vec-supa"/></animateMotion></circle>
             <circle r="2.5" class="pulse-dot pulse-ai"><animateMotion dur="5.5s" repeatCount="indefinite"><mpath href="#t-crew-or"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-hw"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#t-esp-freertos"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-hw"><animateMotion dur="3.8s" repeatCount="indefinite"><mpath href="#t-freertos-ros2"/></animateMotion></circle>
+            <circle r="2.5" class="pulse-dot pulse-hw"><animateMotion dur="5.2s" repeatCount="indefinite"><mpath href="#t-freertos-slam"/></animateMotion></circle>
           </svg>
 
           <div class="pcb-nodes">
@@ -613,9 +619,9 @@ KEY CHALLENGE: Diagnosing and resolving the hardware-level ESP32 ADC2 and Blueto
             <div class="pcb-node node-hw" data-id="oscilloscope" data-cat="Embedded &amp; Hardware" style="left: 45%; top: 25%">Oscilloscope</div>
             <div class="pcb-node node-hw" data-id="logic_analyzer" data-cat="Embedded &amp; Hardware" style="left: 48%; top: 35%">Logic Analyzer</div>
             <div class="pcb-node node-hw" data-id="jtag_swd" data-cat="Embedded &amp; Hardware" style="left: 42%; top: 30%">JTAG/SWD</div>
-            <div class="pcb-node primary node-hw" data-id="freertos" data-cat="Embedded &amp; Hardware" style="left: 52%; top: 18%">FreeRTOS</div>
-            <div class="pcb-node node-hw" data-id="ros2" data-cat="Embedded &amp; Hardware" style="left: 55%; top: 30%">ROS2</div>
-            <div class="pcb-node node-hw" data-id="slam" data-cat="Embedded &amp; Hardware" style="left: 50%; top: 42%">SLAM Nav</div>
+            <div class="pcb-node primary node-hw" data-id="freertos" data-cat="Embedded &amp; Hardware" style="left: 47%; top: 10%">FreeRTOS</div>
+            <div class="pcb-node node-hw" data-id="ros2" data-cat="Embedded &amp; Hardware" style="left: 54%; top: 21%">ROS2</div>
+            <div class="pcb-node node-hw" data-id="slam" data-cat="Embedded &amp; Hardware" style="left: 51%; top: 37%">SLAM Nav</div>
             
             <!-- Mechanical -->
             <div class="pcb-node primary node-mech" data-id="onshape" data-cat="Mechanical Design" style="left: 75%; top: 25%">Onshape</div>
